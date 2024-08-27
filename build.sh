@@ -17,7 +17,7 @@ function generate_bin() {
   temp="$(dirname "$out")/temp.sh"
 
   echo '#!/bin/bash' > "$temp"
-  echo "Generating pr.sh in the '$(dirname "$out")' folder..."
+  echo "Generating create-pr.sh in the '$(dirname "$out")' folder..."
   for file in src/*.sh; do
     {
       echo "# $file"
@@ -26,7 +26,7 @@ function generate_bin() {
     } >> "$temp"
   done
 
-  cat pr.sh >> "$temp"
+  cat create-pr.sh >> "$temp"
   grep -v '^source' "$temp" > "$out"
   rm "$temp"
   chmod u+x "$out"
@@ -56,6 +56,6 @@ function generate_checksum() {
 DIR="bin"
 
 mkdir -p "$DIR"
-OUT="bin/pr.sh"
+OUT="bin/create-pr.sh"
 
 build "$OUT"

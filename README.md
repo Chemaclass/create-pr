@@ -1,4 +1,4 @@
-# bash create-pr
+# create-pr.sh
 
 A bash script that helps create your PRs.
 It normalised the PR title, description, assignee by default and initial label based on your branch name.
@@ -23,7 +23,7 @@ Optional env vars:
 - `BASE_BRANCH=main` or extracted from the branch's prefix
 - `ASSIGNEE=@me` or extracted from the branch's prefix
 
-HINT: Add to your composer, npm or whatever system do you use a script pointing to the pr.sh script.
+HINT: Add to your composer, npm or similar a script pointing to the `create-pr.sh`.
 
 ---
 
