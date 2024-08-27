@@ -16,9 +16,10 @@ PR_TEMPLATE="$APP_ROOT_DIR/.github/PULL_REQUEST_TEMPLATE.md"
 
 BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD 2>/dev/null) || error_and_exit "Failed to get the current branch name."
 GH_CLI_INSTALLATION_URL="https://cli.github.com/"
-BASE_BRANCH="main"
+BASE_BRANCH=${BASE_BRANCH:-"main"}
 ASSIGNEE=${ASSIGNEE:-"@me"}
 TICKET_KEY=${TICKET_KEY:-"TICKET"}
+
 LABEL=${LABEL:-$(find_default_label "$BRANCH_NAME")}
 TICKET_NUMBER=$(get_ticket_number "$BRANCH_NAME")
 PR_TITLE=$(format_title "$BRANCH_NAME")

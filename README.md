@@ -6,7 +6,10 @@ It normalised the PR title, description, assignee by default and initial label b
 ## How to use it?
 
 You need this env var `LINK_PREFIX` needed to add automatically a link to the external ticket based on the ticket-number.
+This will be replaced in the placeholder `{{TICKET_LINK}}` in your PR template. 
+
 ```env
+TICKET_KEY=TICKET
 LINK_PREFIX=https://your-company.atlassian.net/browse/
 ```
 

@@ -87,14 +87,14 @@ function format_pr_body() {
   local pr_body
 
   if [[ -z "${LINK_PREFIX}" ]]; then
-    # Remove the section containing "### 🔗 Ticket" and the following ticket line
+    # Remove the section and the following ticket line
     pr_body=$(sed '/### 🔗 Ticket/{N;d;}' "$pr_template")
-    pr_body=$(sed '/{LINK}/{N;d;}' <<< "$pr_body")
+    pr_body=$(sed '/{{TICKET_LINK}}/{N;d;}' <<< "$pr_body")
   else
     # Combine LINK_PREFIX with the ticket key and number
     local full_link="${LINK_PREFIX}${ticket_key}-${ticket_number}"
-    # Replace {LINK} with the full Ticket link
-    pr_body=$(sed "s|{LINK}|$full_link|g" "$pr_template")
+    # Replace {{TICKET_LINK}} with the full Ticket link
+    pr_body=$(sed "s|{{TICKET_LINK}}|$full_link|g" "$pr_template")
   fi
 
   # Trim leading and trailing whitespace from pr_body
