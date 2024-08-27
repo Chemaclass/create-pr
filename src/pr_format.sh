@@ -57,15 +57,17 @@ function get_ticket_number() {
 function get_ticket_key() {
   branch_name=$1
 
-  # Use grep to find the pattern "KEY-NUMBER" where KEY is a sequence of letters
-  # and NUMBER is a sequence of digits. Extract the part before the hyphen.
-  ticket_key=$(echo "$branch_name" | grep -oE "[A-Za-z]+-[0-9]+" | sed 's/-[0-9]*$//')
+  # Check if the branch name contains a '/'
+  if [[ "$branch_name" == *"/"* ]]; then
+    # Use grep to find the pattern "KEY-NUMBER" where KEY is a sequence of letters
+    # and NUMBER is a sequence of digits. Extract the part before the hyphen.
+    ticket_key=$(echo "$branch_name" | grep -oE "[A-Za-z]+-[0-9]+" | sed 's/-[0-9]*$//')
+  else
+    # Extract the first word before a '_' or '-' if there is no '/'
+    ticket_key=$(echo "$branch_name" | grep -oE "^[^_-]+")
+  fi
 
-  # Convert to uppercase
-  ticket_key=$(echo "$ticket_key" | tr '[:lower:]' '[:upper:]')
-
-  # Output the ticket key
-  echo "$ticket_key"
+  echo "$ticket_key" | tr '[:lower:]' '[:upper:]'
 }
 
 # Find the default label based on the branch prefix
