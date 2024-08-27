@@ -1,15 +1,13 @@
 #!/bin/bash
 
-# shellcheck disable=SC2034
-
 ROOT_DIR="$(dirname "${BASH_SOURCE[0]}")"
 
+# shellcheck disable=SC1091
 [[ -f .env ]] &&  source .env
 
 source "$ROOT_DIR/src/pr_format.sh"
 source "$ROOT_DIR/src/generic.sh"
-
-[ -f "$ROOT_DIR/src/dev/debug.sh" ] && source "$ROOT_DIR/src/dev/debug.sh"
+source "$ROOT_DIR/src/dev/debug.sh"
 
 # Template Configuration
 APP_ROOT_DIR=$(git rev-parse --show-toplevel) || error_and_exit "This directory is not a git repository"
@@ -18,7 +16,6 @@ PR_TEMPLATE="$APP_ROOT_DIR/$PR_TEMPLATE_DIR"
 [ -z "$PR_TEMPLATE" ] && error_and_exit "PR template file $PR_TEMPLATE not found."
 
 BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD 2>/dev/null) || error_and_exit "Failed to get the current branch name."
-GH_CLI_INSTALLATION_URL="https://cli.github.com/"
 BASE_BRANCH=${BASE_BRANCH:-"main"}
 ASSIGNEE=${ASSIGNEE:-"@me"}
 
@@ -34,7 +31,8 @@ validate_base_branch_exists
 
 # Push the current branch
 if ! git push -u origin "$BRANCH_NAME"; then
-    error_and_exit "Failed to push the current branch to the remote repository. Please check your git remote settings."
+    error_and_exit "Failed to push the current branch to the remote repository."\
+      "Please check your git remote settings."
 fi
 
 # Create the PR with the specified options

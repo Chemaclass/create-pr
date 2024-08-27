@@ -1,5 +1,7 @@
 #!/bin/bash
 
+GH_CLI_INSTALLATION_URL="https://cli.github.com/"
+
 function error_and_exit() {
     echo "Error: $1" >&2
     exit 1

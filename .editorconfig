@@ -19,3 +19,6 @@ indent_style = tab
 
 [{lib/*,README.md}]
 indent_size = unset
+
+[{lib/bashunit}]
+indent_size = unset
