@@ -9,8 +9,10 @@ You need this env var `LINK_PREFIX` needed to add automatically a link to the ex
 This will be replaced in the placeholder `{{TICKET_LINK}}` in your PR template. 
 
 ```env
-TICKET_KEY=TICKET
 LINK_PREFIX=https://your-company.atlassian.net/browse/
+LABEL=something # or extracted from the branch's prefix
+BASE_BRANCH # or "main" by default
+ASSIGNEE # or "@me" by default
 ```
 
 > HINT: add to your composer, npm or whatever system do you use a script pointing to the pr.sh script. 

@@ -4,6 +4,8 @@
 
 ROOT_DIR="$(dirname "${BASH_SOURCE[0]}")"
 
+[[ -f .env ]] &&  source .env
+
 source "$ROOT_DIR/src/pr_format.sh"
 source "$ROOT_DIR/src/generic.sh"
 
@@ -18,9 +20,9 @@ BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD 2>/dev/null) || error_and_exit "Fa
 GH_CLI_INSTALLATION_URL="https://cli.github.com/"
 BASE_BRANCH=${BASE_BRANCH:-"main"}
 ASSIGNEE=${ASSIGNEE:-"@me"}
-TICKET_KEY=${TICKET_KEY:-"TICKET"}
 
 LABEL=${LABEL:-$(find_default_label "$BRANCH_NAME")}
+TICKET_KEY=$(get_ticket_key "$BRANCH_NAME")
 TICKET_NUMBER=$(get_ticket_number "$BRANCH_NAME")
 PR_TITLE=$(format_title "$BRANCH_NAME")
 PR_BODY=$(format_pr_body "$TICKET_KEY" "$TICKET_NUMBER" "$PR_TEMPLATE")
