@@ -4,6 +4,8 @@
 
 ROOT_DIR="$(dirname "${BASH_SOURCE[0]}")"
 
+[[ -f .env ]] &&  source .env
+
 source "$ROOT_DIR/src/pr_format.sh"
 source "$ROOT_DIR/src/generic.sh"
 
