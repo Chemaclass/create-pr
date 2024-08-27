@@ -83,9 +83,9 @@ function find_default_label() {
         fix|bug|bugfix)
             echo "bug"
             ;;
-        refactor|refactoring)
-            echo "refactoring"
-            ;;
+#        refactor|refactoring)
+#            echo "refactoring"
+#            ;;
         docs|documentation)
             echo "documentation"
             ;;
@@ -101,13 +101,13 @@ function format_pr_body() {
   local pr_template=$3
   local pr_body
 
-  if [[ -z "${LINK_PREFIX}" || -z "${ticket_key}" || -z "${ticket_number}" ]]; then
+  if [[ -z "${PR_TICKET_LINK_PREFIX}" || -z "${ticket_key}" || -z "${ticket_number}" ]]; then
     # Remove the section and the following ticket line
     pr_body=$(sed '/### 🔗 Ticket/{N;d;}' "$pr_template")
     pr_body=$(sed '/{{TICKET_LINK}}/{N;d;}' <<< "$pr_body")
   else
-    # Combine LINK_PREFIX with the ticket key and number
-    local full_link="${LINK_PREFIX}${ticket_key}-${ticket_number}"
+    # Combine PR_TICKET_LINK_PREFIX with the ticket key and number
+    local full_link="${PR_TICKET_LINK_PREFIX}${ticket_key}-${ticket_number}"
     # Replace {{TICKET_LINK}} with the full Ticket link
     pr_body=$(sed "s|{{TICKET_LINK}}|$full_link|g" "$pr_template")
   fi
