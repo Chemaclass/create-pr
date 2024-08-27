@@ -1,25 +1,30 @@
-# bash-create-pr
+# bash create-pr
 
 A bash script that helps create your PRs.
 It normalised the PR title, description, assignee by default and initial label based on your branch name.
 
+> It requires https://cli.github.com/
+
+## Installation
+
+Download the latest `single executable script` on the [Releases page](https://github.com/Chemaclass/bash-create-pr/releases), or build it yourself. You can validate the file's checksum to validate that it wasn't altered. The checksum for each release is on each release on GitHub.
+
+To build the project yourself, you can do it manually or execute it `./build.sh`.
+
 ## How to use it?
 
-You need this env var `LINK_PREFIX` needed to add automatically a link to the external ticket based on the ticket-number.
-This will be replaced in the placeholder `{{TICKET_LINK}}` in your PR template. 
+Optional env vars:
+- `LINK_PREFIX=https://your-company.atlassian.net/browse/` needed to add automatically a link to the external ticket based on the ticket-number. This will be replaced in the placeholder `{{TICKET_LINK}}` in your PR template. If no value is present for `LINK_PREFIX` then the
+  `{{TICKET_LINK}}` will be ignored
+- `LABEL=enhancement` or extracted from the branch's prefix
+- `BASE_BRANCH=main` or extracted from the branch's prefix
+- `ASSIGNEE=@me` or extracted from the branch's prefix
 
-```env
-LINK_PREFIX=https://your-company.atlassian.net/browse/
-LABEL=something # or extracted from the branch's prefix
-BASE_BRANCH # or "main" by default
-ASSIGNEE # or "@me" by default
-```
-
-> HINT: add to your composer, npm or whatever system do you use a script pointing to the pr.sh script. 
+HINT: Add to your composer, npm or whatever system do you use a script pointing to the pr.sh script.
 
 ---
 
-## Feature example
+### Feature example
 
 ```
 feat/TICKET-01-add-new-feature
@@ -34,7 +39,7 @@ feat/TICKET-01-add-new-feature
 - PR title: TICKET-01 Add new feature
 - Adds bug label
 
-## Bug example
+### Bug example
 
 ```
 fix/TICKET-23-broken-something-after-xyz
@@ -51,7 +56,7 @@ fix/TICKET-23-broken-something-after-xyz
 
 > It adds 'Fix' to the title
 
-## Others
+### Others
 
 ```
 docs/TICKET-45-documenting-that-thing
