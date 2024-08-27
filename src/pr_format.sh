@@ -47,10 +47,11 @@ function format_title() {
     fi
 }
 
-# Extract the TICKET_KEY-[number] from the branch name
 function get_ticket_number() {
     branch_name=$1
-    echo "$branch_name" | grep -oE "[A-Z]+-[0-9]+" | sed "s~.*-~~"
+    echo "$branch_name"\
+      | grep -oEi "[A-Za-z]+-[0-9]+"\
+      | sed -E 's/^[A-Za-z]+-([0-9]+)$/\1/'
 }
 
 function get_ticket_key() {
