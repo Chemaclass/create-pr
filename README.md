@@ -23,9 +23,32 @@ Optional env vars:
 - `BASE_BRANCH=main` or extracted from the branch's prefix
 - `ASSIGNEE=@me` or extracted from the branch's prefix
 
-HINT: Add to your composer, npm or similar a script pointing to the `create-pr.sh`.
+### HINTS
+
+- Add to your composer, npm or similar a script pointing to the `create-pr.sh`
+- You can use the [PULL_REQUEST_TEMPLATE](./.github/PULL_REQUEST_TEMPLATE.md) from this project as example
 
 ---
+
+## Development
+
+- Entry point `create-pr.sh`
+- Isolated testable functions inside files under the `src` directory
+- There is a build script that will generate 1-single-executable script combining all files from src and the entry point.
+
+### Tests
+
+Tests written in [bashunit](https://bashunit.typeddevs.com/)
+
+```bash
+lib/bashunit tests
+```
+
+---
+
+## Examples
+
+For the full experience, make sure to have a `PULL_REQUEST_TEMPLATE` in your project.
 
 ### Feature example
 
@@ -33,14 +56,14 @@ HINT: Add to your composer, npm or similar a script pointing to the `create-pr.s
 feat/TICKET-01-add-new-feature
 ```
 
-- prefix: feat | feature
-- ticket-key: TICKET
-- ticket-number: 01
+- prefix: `feat` | `feature`
+- ticket-key: `TICKET`
+- ticket-number: `01`
 
 #### Results
 
-- PR title: TICKET-01 Add new feature
-- Adds bug label
+- PR title: `TICKET-01 Add new feature`
+- Adds `enhancement` label
 
 ### Bug example
 
@@ -48,23 +71,13 @@ feat/TICKET-01-add-new-feature
 fix/TICKET-23-broken-something-after-xyz
 ```
 
-- prefix: fix | bug | bugfix
-- ticket-key: TICKET
-- ticket-number: 23
+- prefix: `fix` | `bug` | `bugfix`
+- ticket-key: `TICKET`
+- ticket-number: `23`
 
 #### Results
 
-- PR title: TICKET-23 Fix broken something after xyz
-- Adds bug label
+- PR title: `TICKET-23 Fix broken something after xyz`
+- Adds `bug` label
 
 > It adds 'Fix' to the title
-
-### Others
-
-```
-docs/TICKET-45-documenting-that-thing
-```
-
-```
-refactor/TICKET-67-documenting-that-thing
-```
