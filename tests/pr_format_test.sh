@@ -106,16 +106,16 @@ function test_find_default_label_documentation() {
   assert_equals "documentation" $(find_default_label "documentation/TICKET-123-my-branch_name")
 }
 
-function test_format_pr_body_with_link_prefix() {
-  export LINK_PREFIX=https://your-company.atlassian.net/browse/
+function test_format_pr_body_with_PR_TICKET_LINK_PREFIX() {
+  export PR_TICKET_LINK_PREFIX=https://your-company.atlassian.net/browse/
 
   local actual=$(format_pr_body "TICKET" "123" "$ROOT_DIR/.github/PULL_REQUEST_TEMPLATE.md")
 
   assert_contains "https://your-company.atlassian.net/browse/TICKET-123" "$actual"
 }
 
-function test_format_pr_body_without_link_prefix() {
-  export LINK_PREFIX=
+function test_format_pr_body_without_PR_TICKET_LINK_PREFIX() {
+  export PR_TICKET_LINK_PREFIX=
 
   local actual=$(format_pr_body "TICKET" "123" "$ROOT_DIR/.github/PULL_REQUEST_TEMPLATE.md")
 
@@ -124,7 +124,7 @@ function test_format_pr_body_without_link_prefix() {
 }
 
 function test_format_pr_body_without_ticket_key() {
-  export LINK_PREFIX=https://your-company.atlassian.net/browse/
+  export PR_TICKET_LINK_PREFIX=https://your-company.atlassian.net/browse/
 
   local actual=$(format_pr_body "" "123" "$ROOT_DIR/.github/PULL_REQUEST_TEMPLATE.md")
 
@@ -133,7 +133,7 @@ function test_format_pr_body_without_ticket_key() {
 }
 
 function test_format_pr_body_without_ticket_number() {
-  export LINK_PREFIX=https://your-company.atlassian.net/browse/
+  export PR_TICKET_LINK_PREFIX=https://your-company.atlassian.net/browse/
 
   local actual=$(format_pr_body "TICKET" "" "$ROOT_DIR/.github/PULL_REQUEST_TEMPLATE.md")
 

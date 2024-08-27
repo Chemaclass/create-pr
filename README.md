@@ -14,7 +14,7 @@ To build the project yourself, you can do it manually or execute it `./build.sh`
 ## How to use it?
 
 Optional env vars:
-- `LINK_PREFIX=https://your-company.atlassian.net/browse/` needed to add automatically a link to the external ticket based on the ticket-number. This will be replaced in the placeholder `{{TICKET_LINK}}` in your PR template. If no value is present for `LINK_PREFIX` then the
+- `PR_TICKET_LINK_PREFIX=https://your-company.atlassian.net/browse/` needed to add automatically a link to the external ticket based on the ticket-number. This will be replaced in the placeholder `{{TICKET_LINK}}` in your PR template. If no value is present for `PR_TICKET_LINK_PREFIX` then the
   `{{TICKET_LINK}}` will be ignored
 - `LABEL=enhancement` or extracted from the branch's prefix
 - `BASE_BRANCH=main` or extracted from the branch's prefix
