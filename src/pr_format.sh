@@ -84,9 +84,21 @@ function format_pr_body() {
   local ticket_key=$1
   local ticket_number=$2
   local pr_template=$3
+  local pr_body
 
-  local full_link="${LINK_PREFIX}${ticket_key}-${ticket_number}"
-  local pr_body=$(sed "s|{LINK}|$full_link|g" "$pr_template")
+  if [[ -z "${LINK_PREFIX}" ]]; then
+    # Remove the section containing "### 🔗 Jira" and the following ticket line
+    pr_body=$(sed '/### 🔗 Jira/{N;d;}' "$pr_template")
+    pr_body=$(sed '/{LINK}/{N;d;}' <<< "$pr_body")
+  else
+    # Combine LINK_PREFIX with the ticket key and number
+    local full_link="${LINK_PREFIX}${ticket_key}-${ticket_number}"
+    # Replace {LINK} with the full Jira link
+    pr_body=$(sed "s|{LINK}|$full_link|g" "$pr_template")
+  fi
+
+  # Trim leading and trailing whitespace from pr_body
+  pr_body=$(echo "$pr_body" | awk '{$1=$1};1')
 
   echo "$pr_body"
 }
