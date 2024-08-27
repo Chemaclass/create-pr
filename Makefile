@@ -41,8 +41,6 @@ help:
 	@echo ""
 	@echo "Commands:"
 	@echo "  test                     Run the tests"
-	@echo "  test/list                List all tests under the tests directory"
-	@echo "  test/watch               Automatically run tests every second"
 	@echo "  env/example              Copy variables without the values from .env into .env.example"
 	@echo "  pre_commit/install       Install the pre-commit hook"
 	@echo "  pre_commit/run           Function that will be called when the pre-commit hook runs"
@@ -50,22 +48,10 @@ help:
 	@echo "  lint                     Run editorconfig linter tool"
 
 SRC_SCRIPTS_DIR=src
-TEST_SCRIPTS_DIR=tests
-EXAMPLE_TEST_SCRIPTS=./example/logic_test.sh
 PRE_COMMIT_SCRIPTS_FILE=./bin/pre-commit
 
-TEST_SCRIPTS = $(wildcard $(TEST_SCRIPTS_DIR)/*/*[tT]est.sh)
-
-test/list:
-	@echo "Test scripts found:"
-	@echo $(TEST_SCRIPTS) | tr ' ' '\n'
-
-test: $(TEST_SCRIPTS)
-	@lib/bashunit $(TEST_SCRIPTS)
-
-test/watch: $(TEST_SCRIPTS)
-	@lib/bashunit $(TEST_SCRIPTS)
-	@fswatch -m poll_monitor -or $(SRC_SCRIPTS_DIR) $(TEST_SCRIPTS_DIR) .env Makefile | xargs -n1 lib/bashunit $(TEST_SCRIPTS)
+test: $(TEST_SCRIPTS_DIR)
+	@lib/bashunit tests
 
 env/example:
 	@echo "Copying variables without the values from .env into .env.example"
