@@ -140,3 +140,11 @@ function test_format_pr_body_without_ticket_number() {
   assert_not_contains "https://your-company.atlassian.net/browse/" "$actual"
   assert_string_starts_with "## 🤔 Background" "$actual"
 }
+
+function test_format_pr_body_without_pr_template() {
+  export PR_TICKET_LINK_PREFIX=https://your-company.atlassian.net/browse/
+
+  local actual=$(format_pr_body "TICKET" "123" "")
+
+  assert_equals "" "$actual"
+}
