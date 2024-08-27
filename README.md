@@ -7,7 +7,7 @@ It normalised the PR title, description, assignee by default and initial label b
 
 You need this env var `LINK_PREFIX` needed to add automatically a link to the external ticket based on the ticket-number.
 ```env
-LINK_PREFIX=https://your-company.atlassian.net/browse/TICKET-
+LINK_PREFIX=https://your-company.atlassian.net/browse/
 ```
 
 > HINT: add to your composer, npm or whatever system do you use a script pointing to the pr.sh script. 

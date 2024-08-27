@@ -1,10 +1,12 @@
 #!/bin/bash
 
 # shellcheck disable=SC2046
+# shellcheck disable=SC2155
+
+ROOT_DIR="$(dirname "${BASH_SOURCE[0]}")/.."
 
 function set_up() {
-  ROOT_DIR="$(dirname "${BASH_SOURCE[0]}")"
-  source "$ROOT_DIR/../github-pr/pr_format.sh"
+  source "$ROOT_DIR/src/pr_format.sh"
 }
 
 function test_format_title_without_prefix() {
@@ -86,4 +88,12 @@ function test_find_default_label_refactoring() {
 function test_find_default_label_documentation() {
   assert_equals "documentation" $(find_default_label "docs/TICKET-123-my-branch_name")
   assert_equals "documentation" $(find_default_label "documentation/TICKET-123-my-branch_name")
+}
+
+function test_format_pr_body() {
+  export LINK_PREFIX=https://your-company.atlassian.net/browse/
+
+  local actual=$(format_pr_body "TICKET" "123" "$ROOT_DIR/.github/PULL_REQUEST_TEMPLATE.md")
+
+  assert_contains "https://your-company.atlassian.net/browse/TICKET-123" "$actual"
 }

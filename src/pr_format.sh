@@ -1,4 +1,7 @@
 #!/bin/bash
+
+# shellcheck disable=SC2155
+
 function format_title() {
     input="$1"
 
@@ -75,4 +78,15 @@ function find_default_label() {
             echo "enhancement"
             ;;
     esac
+}
+
+function format_pr_body() {
+  local ticket_key=$1
+  local ticket_number=$2
+  local pr_template=$3
+
+  local full_link="${LINK_PREFIX}${ticket_key}-${ticket_number}"
+  local pr_body=$(sed "s|{LINK}|$full_link|g" "$pr_template")
+
+  echo "$pr_body"
 }
