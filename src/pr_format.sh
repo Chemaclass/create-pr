@@ -54,21 +54,6 @@ function get_ticket_number() {
       | sed -E 's/^[A-Za-z]+-([0-9]+)$/\1/'
 }
 
-#function get_ticket_key() {
-#  branch_name=$1
-#
-#  # Check if the branch name contains a '/'
-#  if [[ "$branch_name" == *"/"* ]]; then
-#    ticket_key=$(echo "$branch_name" | grep -oE "[A-Za-z]+-[0-9]+" | sed 's/-[0-9]*$//')
-#
-#  else
-#    # Extract the first word before a '_' or '-' if there is no '/'
-#    ticket_key=$(echo "$branch_name" | grep -oE "^[^_-]+")
-#  fi
-#
-#  echo "$ticket_key" | tr '[:lower:]' '[:upper:]'
-#}
-
 function get_ticket_key() {
   branch_name=$1
 
