@@ -96,10 +96,10 @@ function test_find_default_label_bug() {
   assert_equals "bug" $(find_default_label "bugfix/TICKET-123-my-branch_name")
 }
 
-function test_find_default_label_refactoring() {
-  assert_equals "refactoring" $(find_default_label "refactor/TICKET-123-my-branch_name")
-  assert_equals "refactoring" $(find_default_label "refactoring/TICKET-123-my-branch_name")
-}
+#function test_find_default_label_refactoring() {
+#  assert_equals "refactoring" $(find_default_label "refactor/TICKET-123-my-branch_name")
+#  assert_equals "refactoring" $(find_default_label "refactoring/TICKET-123-my-branch_name")
+#}
 
 function test_find_default_label_documentation() {
   assert_equals "documentation" $(find_default_label "docs/TICKET-123-my-branch_name")

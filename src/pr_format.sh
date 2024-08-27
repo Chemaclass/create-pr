@@ -83,9 +83,9 @@ function find_default_label() {
         fix|bug|bugfix)
             echo "bug"
             ;;
-        refactor|refactoring)
-            echo "refactoring"
-            ;;
+#        refactor|refactoring)
+#            echo "refactoring"
+#            ;;
         docs|documentation)
             echo "documentation"
             ;;
