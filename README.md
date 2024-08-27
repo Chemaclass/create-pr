@@ -14,8 +14,8 @@ To build the project yourself, you can do it manually or execute it `./build.sh`
 ## How to use it?
 
 Optional env vars:
-- `PR_TICKET_LINK_PREFIX=https://your-company.atlassian.net/browse/` 
-  - This will be replaced in the placeholder `{{TICKET_LINK}}` in your PR template 
+- `PR_TICKET_LINK_PREFIX=https://your-company.atlassian.net/browse/`
+  - This will be replaced in the placeholder `{{TICKET_LINK}}` in your PR template
   - If no value is present for `PR_TICKET_LINK_PREFIX` then the `{{TICKET_LINK}}` will be ignored
   - It will use the ticket key and number to append to the link prefix
 - `PR_TEMPLATE_DIR=.github/PULL_REQUEST_TEMPLATE.md`

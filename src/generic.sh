@@ -19,7 +19,7 @@ function validate_the_branch_has_commits() {
 
 function validate_base_branch_exists() {
   if ! git show-ref --verify --quiet "refs/heads/$BASE_BRANCH"; then
-      error_and_exit "Base branch '$BASE_BRANCH' does not exist. Please check the base branch name or create it."
+    error_and_exit "Base branch '$BASE_BRANCH' does not exist. Please check the base branch name or create it."
   fi
 }
 

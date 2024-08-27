@@ -39,12 +39,13 @@ fi
 
 # Create the PR with the specified options
 if ! gh pr create --title "$PR_TITLE" \
-                   --base "$BASE_BRANCH" \
-                   --head "$BRANCH_NAME" \
-                   --assignee "$ASSIGNEE" \
-                   --label "$LABEL" \
-                   --body "$PR_BODY"; then
-    error_and_exit "Failed to create the pull request. Ensure you have the correct permissions and the repository is properly configured."
+                  --base "$BASE_BRANCH" \
+                  --head "$BRANCH_NAME" \
+                  --assignee "$ASSIGNEE" \
+                  --label "$LABEL" \
+                  --body "$PR_BODY"; then
+    error_and_exit "Failed to create the pull request."\
+      "Ensure you have the correct permissions and the repository is properly configured."
 fi
 
 echo "Pull request created successfully."

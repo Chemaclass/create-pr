@@ -16,7 +16,7 @@ function format_title() {
         prefix=$(echo "$input" | cut -d'/' -f1)
         input="${input#*/}"
 
-         case "$prefix" in
+        case "$prefix" in
             fix|bug|bugfix) prefix="Fix" ;;
             *)              prefix="" ;;
         esac
