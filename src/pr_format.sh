@@ -53,6 +53,12 @@ function get_ticket_number() {
     echo "$branch_name" | grep -oE "[A-Z]+-[0-9]+" | sed "s~.*-~~"
 }
 
+function get_ticket_key() {
+  branch_name=$1
+  # Extract the part before the first hyphen
+  echo "$branch_name" | grep -oE "[A-Z]+-[0-9]+" | cut -d'-' -f1
+}
+
 # Find the default label based on the branch prefix
 function find_default_label() {
     local branch_name=$1
