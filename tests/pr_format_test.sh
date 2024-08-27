@@ -131,3 +131,12 @@ function test_format_pr_body_without_ticket_key() {
   assert_not_contains "https://your-company.atlassian.net/browse/" "$actual"
   assert_string_starts_with "## 🤔 Background" "$actual"
 }
+
+function test_format_pr_body_without_ticket_number() {
+  export LINK_PREFIX=https://your-company.atlassian.net/browse/
+
+  local actual=$(format_pr_body "TICKET" "" "$ROOT_DIR/.github/PULL_REQUEST_TEMPLATE.md")
+
+  assert_not_contains "https://your-company.atlassian.net/browse/" "$actual"
+  assert_string_starts_with "## 🤔 Background" "$actual"
+}
