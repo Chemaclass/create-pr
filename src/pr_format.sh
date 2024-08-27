@@ -87,13 +87,13 @@ function format_pr_body() {
   local pr_body
 
   if [[ -z "${LINK_PREFIX}" ]]; then
-    # Remove the section containing "### 🔗 Jira" and the following ticket line
-    pr_body=$(sed '/### 🔗 Jira/{N;d;}' "$pr_template")
+    # Remove the section containing "### 🔗 Ticket" and the following ticket line
+    pr_body=$(sed '/### 🔗 Ticket/{N;d;}' "$pr_template")
     pr_body=$(sed '/{LINK}/{N;d;}' <<< "$pr_body")
   else
     # Combine LINK_PREFIX with the ticket key and number
     local full_link="${LINK_PREFIX}${ticket_key}-${ticket_number}"
-    # Replace {LINK} with the full Jira link
+    # Replace {LINK} with the full Ticket link
     pr_body=$(sed "s|{LINK}|$full_link|g" "$pr_template")
   fi
 

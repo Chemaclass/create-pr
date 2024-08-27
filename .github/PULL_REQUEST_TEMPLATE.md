@@ -1,4 +1,4 @@
-### 🔗 Jira
+### 🔗 Ticket
 
 {LINK}
 

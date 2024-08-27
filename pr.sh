@@ -4,8 +4,9 @@
 
 ROOT_DIR="$(dirname "${BASH_SOURCE[0]}")"
 
-source "$ROOT_DIR/pr_format.sh"
-[ -f "$ROOT_DIR/dev/debug.sh" ] && source "$ROOT_DIR/dev/debug.sh"
+source "$ROOT_DIR/src/pr_format.sh"
+
+[ -f "$ROOT_DIR/src/dev/debug.sh" ] && source "$ROOT_DIR/src/dev/debug.sh"
 
 function error_and_exit {
     echo "Error: $1" >&2
