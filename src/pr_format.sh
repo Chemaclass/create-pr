@@ -3,7 +3,14 @@
 # shellcheck disable=SC2155
 
 function format_title() {
-    input="$1"
+    branch_name="$1"
+    local ticket_key=$(get_ticket_key "$branch_name")
+    local ticket_number=$(get_ticket_number "$branch_name")
+
+    if [[ -z "$ticket_key" || -z "$ticket_number" ]]; then
+      normalize_pr_title "${branch_name#*/}"
+      return
+    fi
 
     # Initialize prefix and parts as empty
     prefix=""
@@ -12,29 +19,22 @@ function format_title() {
     part3=""
 
     # Remove the prefix if it starts with any prefix followed by '/'
-    if [[ "$input" =~ ^[^/]+/ ]]; then
-        prefix=$(echo "$input" | cut -d'/' -f1)
-        input="${input#*/}"
+    if [[ "$branch_name" =~ ^[^/]+/ ]]; then
+        prefix=$(echo "$branch_name" | cut -d'/' -f1)
+        branch_name="${branch_name#*/}"
 
         case "$prefix" in
             fix|bug|bugfix) prefix="Fix" ;;
             *)              prefix="" ;;
         esac
     fi
-    # Extract and format parts of the input
-    part1=$(echo "$input" | cut -d'-' -f1 | tr '[:lower:]' '[:upper:]')
-    part2=$(echo "$input" | cut -d'-' -f2)
-    part3=$(echo "$input" | cut -d'-' -f3- | tr '_' ' ' | awk '
-    {
-        for (i = 1; i <= NF; i++) {
-            $i = toupper(substr($i, 1, 1)) tolower(substr($i, 2))
-        }
-        gsub(/-/, " ", $0)  # Replace remaining hyphens with spaces
-        print
-    }' | sed 's/ $//')
+    # Extract and format parts of the branch_name
+    part1=$(echo "$branch_name" | cut -d'-' -f1 | tr '[:lower:]' '[:upper:]')
+    part2=$(echo "$branch_name" | cut -d'-' -f2)
+    part3=$(echo "$branch_name" | cut -d'-' -f3- | tr '-' ' '| tr '_' ' ')
 
     # Ensure there is no duplicated "Fix"
-    if [[ "$part3" =~ Fix ]]; then
+    if [[ "$part3" =~ Fix || "$part3" =~ fix ]]; then
         prefix=""
     fi
 
@@ -43,9 +43,26 @@ function format_title() {
         part3="$(echo "$part3" | tr '[:upper:]' '[:lower:]')"
         echo "$part1-$part2 $prefix $part3"
     else
+        part3="$(echo "${part3:0:1}" | tr '[:lower:]' '[:upper:]')${part3:1}"
         echo "$part1-$part2 $part3"
     fi
 }
+
+function normalize_pr_title() {
+  input="$1"
+
+  echo "$input" | awk '
+      {
+          gsub(/_/, " ", $0)  # Replace underscores with spaces
+          for (i = 1; i <= NF; i++) {
+              # Capitalize first letter and lowercase the rest
+              $i = toupper(substr($i, 1, 1)) tolower(substr($i, 2))
+          }
+          gsub(/-/, " ", $0)  # Replace hyphens with spaces
+          print
+      }' | sed 's/[[:space:]]*$//'
+}
+
 
 function get_ticket_number() {
     branch_name=$1
