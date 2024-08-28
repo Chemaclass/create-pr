@@ -128,7 +128,7 @@ function test_format_pr_body_without_PR_TICKET_LINK_PREFIX() {
   local actual=$(format_pr_body "TICKET" "123" "$ROOT_DIR/.github/PULL_REQUEST_TEMPLATE.md")
 
   assert_not_contains "https://your-company.atlassian.net/browse/" "$actual"
-  assert_string_starts_with "## 🤔 Background" "$actual"
+  assert_contains "Nope" "$actual"
 }
 
 function test_format_pr_body_without_ticket_key() {
@@ -137,7 +137,7 @@ function test_format_pr_body_without_ticket_key() {
   local actual=$(format_pr_body "" "123" "$ROOT_DIR/.github/PULL_REQUEST_TEMPLATE.md")
 
   assert_not_contains "https://your-company.atlassian.net/browse/" "$actual"
-  assert_string_starts_with "## 🤔 Background" "$actual"
+  assert_contains "Nope" "$actual"
 }
 
 function test_format_pr_body_without_ticket_number() {
@@ -146,7 +146,7 @@ function test_format_pr_body_without_ticket_number() {
   local actual=$(format_pr_body "TICKET" "" "$ROOT_DIR/.github/PULL_REQUEST_TEMPLATE.md")
 
   assert_not_contains "https://your-company.atlassian.net/browse/" "$actual"
-  assert_string_starts_with "## 🤔 Background" "$actual"
+  assert_contains "Nope" "$actual"
 }
 
 function test_format_pr_body_without_pr_template() {

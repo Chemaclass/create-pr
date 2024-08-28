@@ -108,8 +108,7 @@ function format_pr_body() {
 
   if [[ -z "${PR_TICKET_LINK_PREFIX}" || -z "${ticket_key}" || -z "${ticket_number}" ]]; then
     # Remove the section and the following ticket line
-    pr_body=$(sed '/### 🔗 Ticket/{N;d;}' "$pr_template")
-    pr_body=$(sed '/{{TICKET_LINK}}/{N;d;}' <<< "$pr_body")
+    pr_body=$(sed "s|{{TICKET_LINK}}|Nope|g" "$pr_template")
   else
     # Combine PR_TICKET_LINK_PREFIX with the ticket key and number
     local full_link="${PR_TICKET_LINK_PREFIX}${ticket_key}-${ticket_number}"
