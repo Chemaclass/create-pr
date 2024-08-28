@@ -9,10 +9,28 @@ function set_up() {
   source "$ROOT_DIR/src/pr_format.sh"
 }
 
+function test_normalize_pr_title() {
+  actual=$(normalize_pr_title "add-pr-create_script")
+
+  assert_equals "Add pr create Script" "$actual"
+}
+
 function test_format_title_without_prefix() {
   actual=$(format_title "TICKET-0000-add_pr_create_script")
 
-  assert_equals "TICKET-0000 Add Pr Create Script" "$actual"
+  assert_equals "TICKET-0000 Add pr create script" "$actual"
+}
+
+function test_format_title_without_ticket_key() {
+  actual=$(format_title "0000-add_pr_create_script")
+
+  assert_equals "0000 add Pr Create Script" "$actual"
+}
+
+function test_format_title_without_ticket() {
+  actual=$(format_title "add-pr-create_script")
+
+  assert_equals "Add pr create Script" "$actual"
 }
 
 # data_provider provider_no_prefix
