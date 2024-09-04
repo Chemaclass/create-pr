@@ -118,10 +118,15 @@ function find_default_label() {
 }
 
 function format_pr_body() {
-  local ticket_key=$1
-  local ticket_number=$2
-  local pr_template=$3
+  local branch_name=$1
+  local pr_template=$2
   local pr_body
+
+  local ticket_key
+  ticket_key=$(get_ticket_key "$branch_name")
+
+  local ticket_number
+  ticket_number=$(get_ticket_number "$branch_name")
 
   if [[ -z "${PR_TICKET_LINK_PREFIX}" || -z "${ticket_key}" || -z "${ticket_number}" ]]; then
     # Remove the section and the following ticket line
