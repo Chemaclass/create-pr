@@ -29,6 +29,9 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: "Install bashunit"
+        run: "./install-dependencies.sh"
+
       - name: Run Tests
         run: ${{ matrix.script_name }}
 
