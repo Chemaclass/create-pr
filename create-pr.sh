@@ -20,10 +20,8 @@ BASE_BRANCH=${BASE_BRANCH:-"main"}
 ASSIGNEE=${ASSIGNEE:-"@me"}
 
 LABEL=${LABEL:-$(find_default_label "$BRANCH_NAME")}
-TICKET_KEY=$(get_ticket_key "$BRANCH_NAME")
-TICKET_NUMBER=$(get_ticket_number "$BRANCH_NAME")
 PR_TITLE=$(format_title "$BRANCH_NAME")
-PR_BODY=$(format_pr_body "$TICKET_KEY" "$TICKET_NUMBER" "$PR_TEMPLATE")
+PR_BODY=$(format_pr_body "$BRANCH_NAME" "$PR_TEMPLATE")
 
 validate_gh_cli_is_installed
 validate_the_branch_has_commits

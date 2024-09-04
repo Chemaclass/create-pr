@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Fix get_ticket_number when branch name contains numbers
+
 ## 0.2 - 2024-08-28
 
 - Improved format_title

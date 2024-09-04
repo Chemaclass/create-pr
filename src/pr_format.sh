@@ -8,7 +8,7 @@ function format_title() {
     local ticket_number=$(get_ticket_number "$branch_name")
 
     if [[ -z "$ticket_key" || -z "$ticket_number" ]]; then
-      normalize_pr_title "${branch_name#*/}"
+      normalize_pr_title "$branch_name"
       return
     fi
 
@@ -50,6 +50,7 @@ function format_title() {
 
 function normalize_pr_title() {
   input="$1"
+  input="${input#*/}"
 
   echo "$input" | awk '
       {
@@ -63,12 +64,9 @@ function normalize_pr_title() {
       }' | sed 's/[[:space:]]*$//'
 }
 
-
 function get_ticket_number() {
-    branch_name=$1
-    echo "$branch_name"\
-      | grep -oEi "[A-Za-z]+-[0-9]+"\
-      | sed -E 's/^[A-Za-z]+-([0-9]+)$/\1/'
+  branch_name=$1
+  echo "$branch_name" | grep -oE "[0-9]+" | head -n 1
 }
 
 function get_ticket_key() {
@@ -76,18 +74,23 @@ function get_ticket_key() {
 
   # Check if the branch name contains a '/'
   if [[ "$branch_name" == *"/"* ]]; then
-    # Try to extract the pattern "KEY-NUMBER"
-    ticket_key=$(echo "$branch_name" | grep -oE "[A-Za-z]+-[0-9]+" | sed 's/-[0-9]*$//')
+    # Try to extract the pattern "KEY-NUMBER" and stop after the first occurrence
+    ticket_key=$(echo "$branch_name" | grep -oE "[A-Za-z]+-[0-9]+" | head -n 1 | sed 's/-[0-9]*$//')
   else
-    ticket_key=$(echo "$branch_name" | grep -oE "^[^_-]+")
+    ticket_key=$(echo "$branch_name" | grep -oE "^[A-Za-z]+" | head -n 1)
   fi
 
+  # If no ticket key is found, ensure there's no ticket-like pattern and return empty
   if [[ -z "$ticket_key" ]]; then
-    # If ticket_key is empty, extract the first word after the '/'
-    ticket_key=$(echo "$branch_name" | sed -n 's|^[^/]*\(/[^/-]*\).*|\1|p' | sed 's|/||')
+    if ! echo "$branch_name" | grep -qE "[A-Za-z]+-[0-9]+"; then
+      echo ""
+      return
+    fi
   fi
+
   echo "$ticket_key" | tr '[:lower:]' '[:upper:]'
 }
+
 
 
 # Find the default label based on the branch prefix
@@ -118,10 +121,15 @@ function find_default_label() {
 }
 
 function format_pr_body() {
-  local ticket_key=$1
-  local ticket_number=$2
-  local pr_template=$3
+  local branch_name=$1
+  local pr_template=$2
   local pr_body
+
+  local ticket_key
+  ticket_key=$(get_ticket_key "$branch_name")
+
+  local ticket_number
+  ticket_number=$(get_ticket_number "$branch_name")
 
   if [[ -z "${PR_TICKET_LINK_PREFIX}" || -z "${ticket_key}" || -z "${ticket_number}" ]]; then
     # Remove the section and the following ticket line
@@ -132,7 +140,6 @@ function format_pr_body() {
     # Replace {{TICKET_LINK}} with the full Ticket link
     pr_body=$(sed "s|{{TICKET_LINK}}|$full_link|g" "$pr_template")
   fi
-
   # Trim leading and trailing whitespace from pr_body
   pr_body=$(echo "$pr_body" | awk '{$1=$1};1')
 
