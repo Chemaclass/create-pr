@@ -49,7 +49,7 @@ function test_format_pr_body_without_pr_template() {
 
   local actual=$(format_pr_body "TICKET-123-my_branch" "")
 
-  assert_equals "" "$actual"
+  assert_same "" "$actual"
 }
 
 function test_format_pr_body_with_branch_with_numbers_no_prefix() {
