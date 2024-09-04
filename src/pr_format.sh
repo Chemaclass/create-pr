@@ -63,11 +63,11 @@ function normalize_pr_title() {
       }' | sed 's/[[:space:]]*$//'
 }
 
-
 function get_ticket_number() {
     branch_name=$1
-    echo "$branch_name"\
-      | grep -oEi "[A-Za-z]+-[0-9]+"\
+    echo "$branch_name" \
+      | grep -oE "[A-Za-z]+-[0-9]+" \
+      | head -n 1 \
       | sed -E 's/^[A-Za-z]+-([0-9]+)$/\1/'
 }
 
