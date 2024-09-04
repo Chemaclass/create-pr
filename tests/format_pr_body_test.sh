@@ -51,3 +51,11 @@ function test_format_pr_body_without_pr_template() {
 
   assert_equals "" "$actual"
 }
+
+function test_format_pr_body_with_branch_with_numbers() {
+  export PR_TICKET_LINK_PREFIX=https://your-company.atlassian.net/browse/
+
+  local actual=$(format_pr_body "feat/TICKET-123-my-4-th-branch" "$ROOT_DIR/.github/PULL_REQUEST_TEMPLATE.md")
+
+  assert_contains "https://your-company.atlassian.net/browse/TICKET-123" "$actual"
+}
