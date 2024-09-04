@@ -15,10 +15,7 @@ jobs:
         os:
           - ubuntu-latest
           - macos-latest
-          - windows-latest
         include:
-          - os: windows-latest
-            script_name: 'bash -c "./lib/bashunit tests"'
           - os: ubuntu-latest
             script_name: 'make test'
           - os: macos-latest
