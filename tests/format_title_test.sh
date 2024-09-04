@@ -27,6 +27,12 @@ function test_format_title_without_ticket_and_underscores() {
   assert_equals "Add Pr Create Script" "$actual"
 }
 
+function test_format_title_without_ticket_number() {
+  actual="$(format_title "feat/TICKET-my-branch_name")"
+
+  assert_equals "Ticket my branch Name" "$actual"
+}
+
 function test_format_title_without_prefix() {
   actual=$(format_title "TICKET-0000-add_pr_create_script")
 
