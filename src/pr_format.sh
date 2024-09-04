@@ -76,16 +76,17 @@ function get_ticket_key() {
 
   # Check if the branch name contains a '/'
   if [[ "$branch_name" == *"/"* ]]; then
-    # Try to extract the pattern "KEY-NUMBER"
-    ticket_key=$(echo "$branch_name" | grep -oE "[A-Za-z]+-[0-9]+" | sed 's/-[0-9]*$//')
+    # Try to extract the pattern "KEY-NUMBER" and stop after the first occurrence
+    ticket_key=$(echo "$branch_name" | grep -oE "[A-Za-z]+-[0-9]+" | head -n 1 | sed 's/-[0-9]*$//')
   else
-    ticket_key=$(echo "$branch_name" | grep -oE "^[^_-]+")
+    ticket_key=$(echo "$branch_name" | grep -oE "^[A-Za-z]+" | head -n 1)
   fi
 
   if [[ -z "$ticket_key" ]]; then
     # If ticket_key is empty, extract the first word after the '/'
     ticket_key=$(echo "$branch_name" | sed -n 's|^[^/]*\(/[^/-]*\).*|\1|p' | sed 's|/||')
   fi
+
   echo "$ticket_key" | tr '[:lower:]' '[:upper:]'
 }
 
