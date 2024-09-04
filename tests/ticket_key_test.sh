@@ -17,6 +17,10 @@ function test_get_ticket_key_with_prefix() {
   assert_equals "TICKET" "$(get_ticket_key "feat/TICKET-123-my-branch_name")"
 }
 
+function test_get_ticket_key_with_prefix_and_number_in_branch_name() {
+  assert_equals "TICKET" "$(get_ticket_key "feat/TICKET-123-my-5-th-branch_name")"
+}
+
 function test_get_ticket_key_lower_upper_case() {
   assert_equals "TICKET" "$(get_ticket_key "Ticket-123-my-branch_name")"
 }
