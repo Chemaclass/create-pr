@@ -35,20 +35,15 @@ Please make sure you have [set up your username and email address](https://git-s
 
 ## Testing
 
-Run tests from the library:
+Install dependencies: `./install-dependencies.sh`
+
+Run tests:
 ```bash
 # using make
 make test
 
-# using bashunit
+# using bashunit directly
 lib/bashunit tests
-```
-
-Run the test with a watcher for development:
-this will require to have installed [fswatcher](https://github.com/emcrisostomo/fswatch)
-```bash
-# you have to install `watch` for your OS
-make test/watch
 ```
 
 ## Coding Guidelines
