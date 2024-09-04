@@ -14,6 +14,10 @@ function test_get_ticket_number_with_prefix() {
   assert_equals "123" "$(get_ticket_number "feat/TICKET-123-my-branch_name")"
 }
 
+function test_get_ticket_number_without_prefix_but_prefix() {
+  assert_equals "123" "$(get_ticket_number "feat/123-my-branch_name")"
+}
+
 function test_get_ticket_number_with_prefix_and_number_in_branch_name() {
   assert_equals "123" "$(get_ticket_number "feat/TICKET-123-my-4-th-branch_name")"
 }

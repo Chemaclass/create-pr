@@ -15,6 +15,18 @@ function test_normalize_pr_title() {
   assert_equals "Add pr create Script" "$actual"
 }
 
+function test_format_title_with_underscores() {
+  actual=$(normalize_pr_title "add_pr_create_script")
+
+  assert_equals "Add Pr Create Script" "$actual"
+}
+
+function test_format_title_without_ticket_and_underscores() {
+  actual=$(normalize_pr_title "prefix/add_pr_create_script")
+
+  assert_equals "Add Pr Create Script" "$actual"
+}
+
 function test_format_title_without_prefix() {
   actual=$(format_title "TICKET-0000-add_pr_create_script")
 
@@ -42,8 +54,9 @@ function test_format_title_remove_prefix() {
 }
 
 function provider_no_prefix() {
-  local directories=("feat" "feature" "_")
-  echo "${directories[@]}"
+  echo "feat"
+  echo "feature"
+  echo "_"
 }
 
 # data_provider provider_fix_prefix
@@ -71,6 +84,7 @@ function test_format_title_with_fix_prefix_and_fix_in_branch_name() {
 }
 
 function provider_fix_prefix() {
-  local directories=("fix" "bug" "bugfix")
-  echo "${directories[@]}"
+  echo "fix"
+  echo "bug"
+  echo "bugfix"
 }
