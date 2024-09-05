@@ -3,6 +3,7 @@
 ## Unreleased
 
 - Fix get_ticket_number when branch name contains numbers
+- Load `.env.local` on top of `.env` in case it exists
 
 ## 0.2 - 2024-08-28
 
