@@ -4,6 +4,7 @@ ROOT_DIR="$(dirname "${BASH_SOURCE[0]}")"
 
 # shellcheck disable=SC1091
 [[ -f .env ]] &&  source .env
+[[ -f .env.local ]] &&  source .env.local
 
 source "$ROOT_DIR/src/pr_format.sh"
 source "$ROOT_DIR/src/generic.sh"
