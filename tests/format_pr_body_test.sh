@@ -76,3 +76,12 @@ function test_format_pr_body_background_with_link() {
   assert_not_contains "{{BACKGROUND}}" "$actual"
   assert_contains "Details in the ticket." "$actual"
 }
+
+function test_format_pr_body_background_without_link() {
+  export PR_TICKET_LINK_PREFIX=
+
+  local actual=$(format_pr_body "feat/TICKET-123-my-4-th-branch" "$ROOT_DIR/.github/PULL_REQUEST_TEMPLATE.md")
+
+  assert_not_contains "{{BACKGROUND}}" "$actual"
+  assert_not_contains "Details in the ticket." "$actual"
+}
