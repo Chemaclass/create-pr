@@ -1,4 +1,8 @@
 #!/bin/bash
+set -euo pipefail
+
+# shellcheck disable=SC2034
+declare -r CREATE_PR_VERSION="0.3.0"
 
 ROOT_DIR="$(dirname "${BASH_SOURCE[0]}")"
 
@@ -7,9 +11,22 @@ ROOT_DIR="$(dirname "${BASH_SOURCE[0]}")"
 # shellcheck disable=SC1091
 [[ -f .env.local ]] && source .env.local
 
-source "$ROOT_DIR/src/pr_format.sh"
+source "$ROOT_DIR/src/console_header.sh"
 source "$ROOT_DIR/src/generic.sh"
+source "$ROOT_DIR/src/pr_format.sh"
 source "$ROOT_DIR/src/dev/debug.sh"
+
+
+while [[ $# -gt 0 ]]; do
+  argument="$1"
+  case $argument in
+    -v|--version)
+      console_header::print_version
+      trap '' EXIT && exit 0
+      ;;
+  esac
+  shift
+done
 
 # Template Configuration
 APP_ROOT_DIR=$(git rev-parse --show-toplevel) || error_and_exit "This directory is not a git repository"
