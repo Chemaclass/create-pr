@@ -29,7 +29,7 @@ Optional env vars:
   - eg `LABEL=enhancement`
   - If empty then extract label from the branch's prefix - see LABEL_MAPPING
 - `LABEL_MAPPING`
-  - eg `LABEL_MAPPING="feat:enhancement;fix|bug:bug;default:extra"`
+  - eg `LABEL_MAPPING="feat:enhancement; fix|bug:bug; default:extra"`
   - Define a custom mapping from prefix branches to GitHub label
     - eg `feat/your-branch` -> `enhancement` label
     - eg `fix/your-branch` -> `bug` label

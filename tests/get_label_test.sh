@@ -30,7 +30,7 @@ function test_get_label_default_documentation() {
 }
 
 function test_get_label_default_custom_mapping() {
-  local mapping="default:extra;feat|feature:enhancement;fix|bug|bugfix:bug"
+  local mapping="default:extra; feat|feature:enhancement; fix|bug|bugfix:bug"
 
   assert_same "enhancement" $(get_label "feat/TICKET-123-my-branch_name" "$mapping")
   assert_same "enhancement" $(get_label "feature/TICKET-123-my-branch_name" "$mapping")
