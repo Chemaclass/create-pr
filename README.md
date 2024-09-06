@@ -42,3 +42,8 @@ Optional env vars:
 
 - Add to your composer, npm or similar a script pointing to the `create-pr.sh`
 - You can use the [PULL_REQUEST_TEMPLATE](./.github/PULL_REQUEST_TEMPLATE.md) from this project as example
+
+### Contribute
+
+Suggestions, ideas and PRs are more than welcome here!
+Please, Check out our [CONTRIBUTING.md](.github/CONTRIBUTING.md) guidelines.

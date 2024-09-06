@@ -112,7 +112,8 @@ function get_label() {
   # Remove empty spaces due to indentation
   mapping=${mapping// /}
   # Extract the prefix (the part before the first slash or dash)
-  local prefix=$(echo "$branch_name" | sed -E 's@^([^/-]+).*@\1@')
+  local prefix
+  prefix=$(echo "$branch_name" | sed -E 's@^([^/-]+).*@\1@')
   # Default label
   local default_label="enhancement"
 
