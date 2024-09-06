@@ -12,7 +12,7 @@ function set_up() {
 function test_format_pr_body_with_PR_TICKET_LINK_PREFIX() {
   export PR_TICKET_LINK_PREFIX=https://your-company.atlassian.net/browse/
 
-  local actual=$(format_pr_body "TICKET-123-my_branch" "$ROOT_DIR/.github/PULL_REQUEST_TEMPLATE.md")
+  local actual=$(format_pr_body "TICKET-123-my_branch-with-1-number" "$ROOT_DIR/.github/PULL_REQUEST_TEMPLATE.md")
 
   assert_contains "https://your-company.atlassian.net/browse/TICKET-123" "$actual"
 }
