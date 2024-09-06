@@ -23,6 +23,7 @@ function test_format_pr_body_link_without_PR_TICKET_LINK_PREFIX() {
   local actual=$(format_pr_body "TICKET-123-my_branch" "$ROOT_DIR/.github/PULL_REQUEST_TEMPLATE.md")
 
   assert_not_contains "https://your-company.atlassian.net/browse/" "$actual"
+  assert_not_contains "{{ TICKET_LINK }}" "$actual"
   assert_contains "Nope" "$actual"
 }
 
@@ -73,7 +74,7 @@ function test_format_pr_body_background_with_link() {
 
   local actual=$(format_pr_body "feat/TICKET-123-my-4-th-branch" "$ROOT_DIR/.github/PULL_REQUEST_TEMPLATE.md")
 
-  assert_not_contains "{{BACKGROUND}}" "$actual"
+  assert_not_contains "{{ BACKGROUND }}" "$actual"
   assert_contains "Details in the ticket." "$actual"
 }
 
@@ -82,6 +83,6 @@ function test_format_pr_body_background_without_link() {
 
   local actual=$(format_pr_body "feat/TICKET-123-my-4-th-branch" "$ROOT_DIR/.github/PULL_REQUEST_TEMPLATE.md")
 
-  assert_not_contains "{{BACKGROUND}}" "$actual"
+  assert_not_contains "{{ BACKGROUND }}" "$actual"
   assert_not_contains "Details in the ticket." "$actual"
 }

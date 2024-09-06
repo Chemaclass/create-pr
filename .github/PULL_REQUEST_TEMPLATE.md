@@ -1,11 +1,11 @@
 ### 🔗 Ticket
 
-{{TICKET_LINK}}
+{{ TICKET_LINK }}
 
 ## 🤔 Background
 
 <!-- Provide some context to the reviewer before going to any code. -->
-{{BACKGROUND}}
+{{ BACKGROUND }}
 
 ## 💡 Goal
 
