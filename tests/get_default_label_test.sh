@@ -24,12 +24,20 @@ function test_get_default_label_bug() {
   assert_same "bug" $(get_default_label "bugfix/TICKET-123-my-branch_name")
 }
 
-#function test_get_default_label_refactoring() {
-#  assert_same "refactoring" $(get_default_label "refactor/TICKET-123-my-branch_name")
-#  assert_same "refactoring" $(get_default_label "refactoring/TICKET-123-my-branch_name")
-#}
-
 function test_get_default_label_documentation() {
   assert_same "documentation" $(get_default_label "docs/TICKET-123-my-branch_name")
   assert_same "documentation" $(get_default_label "documentation/TICKET-123-my-branch_name")
+}
+
+function test_get_default_label_custom_mapping() {
+  local mapping="default:extra;feat|feature:enhancement;fix|bug|bugfix:bug"
+
+  assert_same "enhancement" $(get_default_label "feat/TICKET-123-my-branch_name" "$mapping")
+  assert_same "enhancement" $(get_default_label "feature/TICKET-123-my-branch_name" "$mapping")
+
+  assert_same "bug" $(get_default_label "fix/TICKET-123-my-branch_name" "$mapping")
+  assert_same "bug" $(get_default_label "bug/TICKET-123-my-branch_name" "$mapping")
+  assert_same "bug" $(get_default_label "bugfix/TICKET-123-my-branch_name" "$mapping")
+
+  assert_same "extra" $(get_default_label "unknown/TICKET-123-my-branch_name" "$mapping")
 }
