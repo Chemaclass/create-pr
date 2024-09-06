@@ -32,6 +32,10 @@ while [[ $# -gt 0 ]]; do
       console_header::print_version
       trap '' EXIT && exit 0
       ;;
+    --help)
+      console_header::print_help
+      trap '' EXIT && exit 0
+      ;;
   esac
   shift
 done
