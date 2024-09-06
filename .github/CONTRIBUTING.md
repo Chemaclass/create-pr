@@ -33,6 +33,22 @@ Please post code and output as text ([using proper markup](https://guides.github
 
 Please make sure you have [set up your username and email address](https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup) for use with Git. Strings such as `silly nick name <root@localhost>` looks bad in the commit history of a project.
 
+
+---
+
+## Development
+
+- Entry point `create-pr.sh`
+- Isolated testable functions inside files under the `src` directory
+
+### Build
+
+You can build the whole project into a single executable script combining all files from src and the entry point.
+
+```bash
+./build.sh
+```
+
 ## Testing
 
 Install dependencies: `./install-dependencies.sh`

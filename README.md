@@ -14,70 +14,31 @@ To build the project yourself, you can do it manually or execute it `./build.sh`
 ## How to use it?
 
 Optional env vars:
-- `PR_TICKET_LINK_PREFIX=https://your-company.atlassian.net/browse/`
-  - This will be replaced in the placeholder `{{TICKET_LINK}}` in your PR template
-  - If no value is present for `PR_TICKET_LINK_PREFIX` then the `{{TICKET_LINK}}` will be ignored
-  - It will use the ticket key and number to append to the link prefix
 - `PR_TEMPLATE_DIR=.github/PULL_REQUEST_TEMPLATE.md`
-- `LABEL=enhancement` or extracted from the branch's prefix
-- `BASE_BRANCH=main` or extracted from the branch's prefix
-- `ASSIGNEE=@me` or extracted from the branch's prefix
+  - See [example](.github/PULL_REQUEST_TEMPLATE.md)
+  - Placeholders:
+    - `{{ TICKET_LINK }}`
+      - Uses `PR_TICKET_LINK_PREFIX` appending the ticket key and number to form the full URL
+    - `{{ BACKGROUND }}`
+      - if link is found: `Details in the ticket.`
+      - if link is not found: `Provide some context to the reviewer before jumping in the code.`
+  - You can define them inside a comment to avoid rendering them when creating a PR without this script
+    - eg `<!-- {{ TICKET_LINK }} -->`
+    - eg `<!-- {{ BACKGROUND }} -->`
+- `LABEL` define a label for the PR
+  - eg `LABEL=enhancement`
+  - If empty then extract label from the branch's prefix - see LABEL_MAPPING
+- `LABEL_MAPPING`
+  - eg `LABEL_MAPPING="feat:enhancement;fix|bug:bug;default:extra"`
+  - Define a custom mapping from prefix branches to GitHub label
+    - eg `feat/your-branch` -> `enhancement` label
+    - eg `fix/your-branch` -> `bug` label
+    - eg `bug/your-branch` -> `bug` label
+    - eg `unkown/your-branch` -> `extra` label
+- `BASE_BRANCH` or `main` by default
+- `ASSIGNEE` or `@me` by default
 
 ### HINTS
 
 - Add to your composer, npm or similar a script pointing to the `create-pr.sh`
 - You can use the [PULL_REQUEST_TEMPLATE](./.github/PULL_REQUEST_TEMPLATE.md) from this project as example
-
----
-
-## Development
-
-- Entry point `create-pr.sh`
-- Isolated testable functions inside files under the `src` directory
-- There is a build script that will generate 1-single-executable script combining all files from src and the entry point.
-
-### Tests
-
-Tests written in [bashunit](https://bashunit.typeddevs.com/)
-
-```bash
-lib/bashunit tests
-```
-
----
-
-## Examples
-
-For the full experience, make sure to have a `PULL_REQUEST_TEMPLATE` in your project.
-
-### Feature example
-
-```
-feat/TICKET-01-add-new-feature
-```
-
-- prefix: `feat` | `feature`
-- ticket-key: `TICKET`
-- ticket-number: `01`
-
-#### Results
-
-- PR title: `TICKET-01 Add new feature`
-- Adds `enhancement` label
-
-### Bug example
-
-```
-fix/TICKET-23-broken-something-after-xyz
-```
-
-- prefix: `fix` | `bug` | `bugfix`
-- ticket-key: `TICKET`
-- ticket-number: `23`
-
-#### Results
-
-- PR title: `TICKET-23 Fix broken something after xyz`
-- Adds `bug` label
-
-> It adds 'Fix' to the title

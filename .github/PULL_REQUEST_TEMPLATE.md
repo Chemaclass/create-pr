@@ -1,6 +1,6 @@
 ### 🔗 Ticket
 
-<!-- {{ TICKET_LINK }} -->
+{{ TICKET_LINK }}
 
 ## 🤔 Background
 
