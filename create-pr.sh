@@ -23,6 +23,11 @@ while [[ $# -gt 0 ]]; do
     --debug)
       set -x
       ;;
+    -e|--env)
+      # shellcheck disable=SC1090
+      source "$2"
+      shift
+      ;;
     -v|--version)
       console_header::print_version
       trap '' EXIT && exit 0
