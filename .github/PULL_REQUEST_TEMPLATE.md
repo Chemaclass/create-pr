@@ -5,6 +5,7 @@
 ## 🤔 Background
 
 <!-- Provide some context to the reviewer before going to any code. -->
+{{BACKGROUND}}
 
 ## 💡 Goal
 

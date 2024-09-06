@@ -147,18 +147,21 @@ function format_pr_body() {
     with_link=true
   fi
 
-  #################
   # {{TICKET_LINK}}
-  #################
   if [[ "$with_link" == false ]]; then
     # Remove the section and the following ticket line
     pr_body=$(sed "s|{{TICKET_LINK}}|Nope|g" "$pr_template")
   else
-    # Combine PR_TICKET_LINK_PREFIX with the ticket key and number
     local full_link="${PR_TICKET_LINK_PREFIX}${ticket_key}-${ticket_number}"
-    # Replace {{TICKET_LINK}} with the full Ticket link
     pr_body=$(sed "s|{{TICKET_LINK}}|$full_link|g" "$pr_template")
   fi
+
+  # {{BACKGROUND}}
+  local background_text=""
+  if [[ "$with_link" == true ]]; then
+    background_text="Details in the ticket."
+  fi
+  pr_body="${pr_body//"{{BACKGROUND}}"/$background_text}"
 
   # Trim leading and trailing whitespace from pr_body
   pr_body=$(echo "$pr_body" | awk '{$1=$1};1')
