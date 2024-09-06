@@ -103,7 +103,7 @@ function get_ticket_key() {
 }
 
 # Find the default label based on the branch prefix
-function find_default_label() {
+function get_default_label() {
     local branch_name=$1
 
     # Extract the prefix (the part before the first slash or dash)
