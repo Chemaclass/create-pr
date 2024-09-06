@@ -103,7 +103,7 @@ function get_ticket_key() {
 }
 
 # Find the default label based on the branch prefix
-function get_default_label() {
+function get_label() {
   local branch_name=$1
   local mapping=${2:-"feat|feature:enhancement;\
   fix|bug|bugfix:bug;\
