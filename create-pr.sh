@@ -2,7 +2,7 @@
 set -euo pipefail
 
 # shellcheck disable=SC2034
-declare -r CREATE_PR_VERSION="0.3.0"
+declare -r CREATE_PR_VERSION="0.4.0"
 
 ROOT_DIR="$(dirname "${BASH_SOURCE[0]}")"
 

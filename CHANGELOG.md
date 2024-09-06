@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.4 - 2024-09-06
 
 - Fix get_ticket_number when branch name contains numbers
 - Load `.env.local` on top of `.env` in case it exists
@@ -11,6 +11,11 @@
   - `<!-- {{ BACKGROUND }} -->`
 - Add `LABEL_MAPPING`
   - eg `LABEL_MAPPING="feat:enhancement; fix|bug:bug; default:extra"`
+
+## 0.3 - 2024-09-06
+
+- Fix format PR body with number in branch name
+- Fix ticket key without numbers but branch prefix
 
 ## 0.2 - 2024-08-28
 
