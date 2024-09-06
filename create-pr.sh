@@ -20,6 +20,9 @@ source "$ROOT_DIR/src/dev/debug.sh"
 while [[ $# -gt 0 ]]; do
   argument="$1"
   case $argument in
+    --debug)
+      set -x
+      ;;
     -v|--version)
       console_header::print_version
       trap '' EXIT && exit 0
