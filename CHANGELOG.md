@@ -9,6 +9,7 @@
   - `{{ BACKGROUND }}`
 - Enable placeholders inside HTML comments in the PR template
   - `<!-- {{ BACKGROUND }} -->`
+- Add `LABEL_MAPPING`
 
 ## 0.2 - 2024-08-28
 
