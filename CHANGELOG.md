@@ -9,8 +9,8 @@
   - `{{ BACKGROUND }}`
 - Enable placeholders inside HTML comments in the PR template
   - `<!-- {{ BACKGROUND }} -->`
-- Add `LABEL_MAPPING`
-  - eg `LABEL_MAPPING="feat:enhancement; fix|bug:bug; default:extra"`
+- Add `PR_LABEL_MAPPING`
+  - eg `PR_LABEL_MAPPING="feat:enhancement; fix|bug:bug; default:extra"`
 
 ## 0.3 - 2024-09-06
 

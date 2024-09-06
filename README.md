@@ -27,9 +27,9 @@ Optional env vars:
     - eg `<!-- {{ BACKGROUND }} -->`
 - `LABEL` define a label for the PR
   - eg `LABEL=enhancement`
-  - If empty then extract label from the branch's prefix - see LABEL_MAPPING
-- `LABEL_MAPPING`
-  - eg `LABEL_MAPPING="feat:enhancement; fix|bug:bug; default:extra"`
+  - If empty then extract label from the branch's prefix - see PR_LABEL_MAPPING
+- `PR_LABEL_MAPPING`
+  - eg `PR_LABEL_MAPPING="feat:enhancement; fix|bug:bug; default:extra"`
   - Define a custom mapping from prefix branches to GitHub label
     - eg `feat/your-branch` -> `enhancement` label
     - eg `fix/your-branch` -> `bug` label

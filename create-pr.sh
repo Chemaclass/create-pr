@@ -50,7 +50,7 @@ BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD 2>/dev/null) || error_and_exit "Fa
 BASE_BRANCH=${BASE_BRANCH:-"main"}
 ASSIGNEE=${ASSIGNEE:-"@me"}
 
-LABEL=${LABEL:-$(get_label "$BRANCH_NAME" "${LABEL_MAPPING:-}")}
+LABEL=${LABEL:-$(get_label "$BRANCH_NAME" "${PR_LABEL_MAPPING:-}")}
 PR_TITLE=$(format_title "$BRANCH_NAME")
 PR_BODY=$(format_pr_body "$BRANCH_NAME" "$PR_TEMPLATE")
 
