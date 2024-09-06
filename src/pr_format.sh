@@ -129,6 +129,7 @@ function find_default_label() {
     esac
 }
 
+# shellcheck disable=SC2001
 function format_pr_body() {
   local branch_name=$1
   local pr_template=$2
@@ -140,15 +141,27 @@ function format_pr_body() {
   local ticket_number
   ticket_number=$(get_ticket_number "$branch_name")
 
+  local with_link
   if [[ -z "${PR_TICKET_LINK_PREFIX}" || -z "${ticket_key}" || -z "${ticket_number}" ]]; then
-    # Remove the section and the following ticket line
-    pr_body=$(sed "s|{{TICKET_LINK}}|Nope|g" "$pr_template")
+    with_link=false
   else
-    # Combine PR_TICKET_LINK_PREFIX with the ticket key and number
-    local full_link="${PR_TICKET_LINK_PREFIX}${ticket_key}-${ticket_number}"
-    # Replace {{TICKET_LINK}} with the full Ticket link
-    pr_body=$(sed "s|{{TICKET_LINK}}|$full_link|g" "$pr_template")
+    with_link=true
   fi
+
+  # {{TICKET_LINK}}
+  local ticket_link="Nope"
+  if [[ "$with_link" == true ]]; then
+    ticket_link="${PR_TICKET_LINK_PREFIX}${ticket_key}-${ticket_number}"
+  fi
+  pr_body=$(sed "s|{{[[:space:]]*TICKET_LINK[[:space:]]*}}|$ticket_link|g" "$pr_template")
+
+  # {{BACKGROUND}}
+  local background_text=""
+  if [[ "$with_link" == true ]]; then
+    background_text="Details in the ticket."
+  fi
+  pr_body=$(echo "$pr_body" | sed "s|{{[[:space:]]*BACKGROUND[[:space:]]*}}|$background_text|g")
+
   # Trim leading and trailing whitespace from pr_body
   pr_body=$(echo "$pr_body" | awk '{$1=$1};1')
 

@@ -20,5 +20,10 @@ indent_style = tab
 [{lib/*,README.md}]
 indent_size = unset
 
-[{lib/bashunit}]
+[bin/*]
+charset = unset
+end_of_line = unset
+insert_final_newline = unset
+trim_trailing_whitespace = unset
+indent_style = unset
 indent_size = unset
