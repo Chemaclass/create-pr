@@ -47,12 +47,14 @@ function format_title() {
         echo "$part1-$part2 $part3"
     fi
 }
-
 function normalize_pr_title() {
   input="$1"
+  # Remove the prefix before the first '/'
   input="${input#*/}"
+  # Remove leading digits followed by a hyphen (e.g., "27-")
+  input="${input#[0-9]*-}"
 
-  echo "$input" | awk '
+  result=$(echo "$input" | awk '
       {
           gsub(/_/, " ", $0)  # Replace underscores with spaces
           for (i = 1; i <= NF; i++) {
@@ -61,7 +63,9 @@ function normalize_pr_title() {
           }
           gsub(/-/, " ", $0)  # Replace hyphens with spaces
           print
-      }' | sed 's/[[:space:]]*$//'
+      }' | sed 's/[[:space:]]*$//')
+
+  echo "$result"
 }
 
 function get_ticket_number() {
