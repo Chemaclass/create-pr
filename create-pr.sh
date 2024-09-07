@@ -54,9 +54,8 @@ LABEL=${LABEL:-$(get_label "$BRANCH_NAME" "${PR_LABEL_MAPPING:-}")}
 PR_TITLE=$(format_title "$BRANCH_NAME")
 PR_BODY=$(format_pr_body "$BRANCH_NAME" "$PR_TEMPLATE")
 
-validate_gh_cli_is_installed
-validate_the_branch_has_commits
-validate_base_branch_exists
+validate_base_branch_exists "$BASE_BRANCH"
+validate_the_branch_has_commits "$BRANCH_NAME"
 
 # Push the current branch
 if ! git push -u origin "$BRANCH_NAME"; then
@@ -64,15 +63,31 @@ if ! git push -u origin "$BRANCH_NAME"; then
       "Please check your git remote settings."
 fi
 
-# Create the PR with the specified options
-if ! gh pr create --title "$PR_TITLE" \
-                  --base "$BASE_BRANCH" \
-                  --head "$BRANCH_NAME" \
-                  --assignee "$ASSIGNEE" \
-                  --label "$LABEL" \
-                  --body "$PR_BODY"; then
-    error_and_exit "Failed to create the pull request."\
+if [[ "$PR_USING_CLIENT" == "gitlab" ]]; then
+  validate_glab_cli_is_installed
+  if glab mr create --title "$PR_TITLE" \
+                      --target-branch "$BASE_BRANCH" \
+                      --source-branch "$BRANCH_NAME" \
+                      --assignee "$ASSIGNEE" \
+                      --label "$LABEL" \
+                      --description "$PR_BODY"; then
+    echo "Merge Request created successfully."
+  else
+    error_and_exit "Failed to create the Merge Request." \
       "Ensure you have the correct permissions and the repository is properly configured."
+  fi
+else
+  validate_gh_cli_is_installed
+  # Default to GitHub
+  if gh pr create --title "$PR_TITLE" \
+                    --base "$BASE_BRANCH" \
+                    --head "$BRANCH_NAME" \
+                    --assignee "$ASSIGNEE" \
+                    --label "$LABEL" \
+                    --body "$PR_BODY"; then
+    echo "Pull Request created successfully."
+  else
+    error_and_exit "Failed to create the Pull Request." \
+      "Ensure you have the correct permissions and the repository is properly configured."
+  fi
 fi
-
-echo "Pull request created successfully."
