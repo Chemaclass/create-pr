@@ -154,18 +154,19 @@ function format_pr_body() {
   local ticket_number
   ticket_number=$(get_ticket_number "$branch_name")
 
-  local with_link
-  if [[ -z "${PR_TICKET_LINK_PREFIX}" || -z "${ticket_key}" || -z "${ticket_number}" ]]; then
-    with_link=false
-  else
+  local with_link=false
+  if [[ -n "${PR_TICKET_LINK_PREFIX}" && -n "${ticket_number}" ]]; then
     with_link=true
   fi
 
   # {{TICKET_LINK}}
   local ticket_link="Nope"
   if [[ "$with_link" == true ]]; then
-    ticket_link="${PR_TICKET_LINK_PREFIX}${ticket_key}-${ticket_number}"
-    ticket_link="${PR_TICKET_LINK_PREFIX}${ticket_key}-${ticket_number}"
+      if [[ -z "$ticket_key" ]]; then
+        ticket_link="${PR_TICKET_LINK_PREFIX}${ticket_number}"
+      else
+        ticket_link="${PR_TICKET_LINK_PREFIX}${ticket_key}-${ticket_number}"
+      fi
   fi
   pr_body=$(perl -pe 's/<!--\s*{{\s*(.*?)\s*}}\s*-->/{{ $1 }}/g' "$pr_template")
   pr_body=$(echo "$pr_body" | sed "s|{{[[:space:]]*TICKET_LINK[[:space:]]*}}|$ticket_link|g")
