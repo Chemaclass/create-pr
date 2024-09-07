@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Support ticket link with number
+
 ## 0.4 - 2024-09-06
 
 - Fix get_ticket_number when branch name contains numbers
