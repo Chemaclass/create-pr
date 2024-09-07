@@ -167,7 +167,7 @@ function format_pr_body() {
   local ticket_link="Nope"
   if [[ "$with_link" == true ]]; then
       if [[ -z "$ticket_key" ]]; then
-        ticket_link="${PR_TICKET_LINK_PREFIX}${ticket_number}"
+        ticket_link="Closes: ${PR_TICKET_LINK_PREFIX}${ticket_number}"
       else
         ticket_link="${PR_TICKET_LINK_PREFIX}${ticket_key}-${ticket_number}"
       fi
