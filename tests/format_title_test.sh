@@ -15,16 +15,22 @@ function test_normalize_pr_title() {
   assert_same "Add pr create Script" "$actual"
 }
 
-function test_format_title_with_underscores() {
+function test_normalize_pr_title_with_underscores() {
   actual=$(normalize_pr_title "add_pr_create_script")
 
   assert_same "Add Pr Create Script" "$actual"
 }
 
-function test_format_title_without_ticket_and_underscores() {
+function test_normalize_pr_title_without_ticket_and_underscores() {
   actual=$(normalize_pr_title "prefix/add_pr_create_script")
 
   assert_same "Add Pr Create Script" "$actual"
+}
+
+function test_normalize_pr_title_with_prefix_and_ticket_number() {
+  actual=$(normalize_pr_title "prefix/27-add-pr-3-create_script")
+
+  assert_same "Add pr 3 create Script" "$actual"
 }
 
 function test_format_title_without_ticket_number() {
@@ -42,7 +48,7 @@ function test_format_title_without_prefix() {
 function test_format_title_without_ticket_key() {
   actual=$(format_title "0000-add_pr_create_script")
 
-  assert_same "0000 add Pr Create Script" "$actual"
+  assert_same "Add Pr Create Script" "$actual"
 }
 
 function test_format_title_without_ticket() {

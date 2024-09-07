@@ -3,6 +3,7 @@
 ## Unreleased
 
 - Support ticket link with number
+- Remove ticket number from PR title when there is no ticket key
 
 ## 0.4 - 2024-09-06
 
