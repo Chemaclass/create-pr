@@ -9,19 +9,26 @@ function set_up() {
   source "$ROOT_DIR/src/pr_format.sh"
 }
 
-function test_format_pr_body_link_with_PR_TICKET_LINK_PREFIX() {
+function test_format_pr_body_link_without_comment() {
   export PR_TICKET_LINK_PREFIX=https://your-ticket-system.com/
 
   local actual=$(format_pr_body "TICKET-123-my_branch-with-1-number" "$ROOT_DIR/.github/PULL_REQUEST_TEMPLATE.md")
 
   # validate that the link is not inside a HTML comment
   assert_not_contains "<!-- https://your-ticket-system.com/TICKET-123 -->" "$actual"
-
   # but the link is there
   assert_contains "https://your-ticket-system.com/TICKET-123" "$actual"
-
   # still comments might exists
   assert_contains "<!-- " "$actual"
+}
+
+function test_format_pr_body_link_with_PR_TICKET_LINK_PREFIX() {
+  export PR_TICKET_LINK_PREFIX=https://your-ticket-system.com/
+
+  local actual=$(format_pr_body "TICKET-123-my_branch-with-1-number" "$ROOT_DIR/.github/PULL_REQUEST_TEMPLATE.md")
+
+  assert_contains "https://your-ticket-system.com/TICKET-123" "$actual"
+  assert_not_contains "{{ TICKET_LINK }}" "$actual"
 }
 
 function test_format_pr_body_link_without_PR_TICKET_LINK_PREFIX() {
@@ -39,8 +46,7 @@ function test_format_pr_body_link_without_ticket_key() {
 
   local actual=$(format_pr_body "123-my_branch" "$ROOT_DIR/.github/PULL_REQUEST_TEMPLATE.md")
 
-  assert_not_contains "https://your-ticket-system.com/" "$actual"
-  assert_contains "Nope" "$actual"
+  assert_contains "https://your-ticket-system.com/123" "$actual"
 }
 
 function test_format_pr_body_link_without_ticket_number() {
