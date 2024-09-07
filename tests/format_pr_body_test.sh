@@ -46,7 +46,7 @@ function test_format_pr_body_link_without_ticket_key() {
 
   local actual=$(format_pr_body "123-my_branch" "$ROOT_DIR/.github/PULL_REQUEST_TEMPLATE.md")
 
-  assert_contains "https://your-ticket-system.com/123" "$actual"
+  assert_contains "Closes: https://your-ticket-system.com/123" "$actual"
 }
 
 function test_format_pr_body_link_without_ticket_number() {
