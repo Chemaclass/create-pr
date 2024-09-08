@@ -5,6 +5,9 @@
 - Support ticket link with number
 - Remove ticket number from PR title when there is no ticket key
 - Add `PR_TICKET_PREFIX_TEXT`
+- Add `PR_TITLE_TEMPLATE` with placeholders
+  - `{{TICKET_NUMBER}}`, `{{TICKET_KEY}}`, `{{PR_TITLE}}`
+  - eg `PR_TITLE_TEMPLATE="{{TICKET_KEY}}-{{TICKET_NUMBER}} {{PR_TITLE}}"`
 - Refactor unique src file into multiple (single scope/responsibility) files
 - Add option `-t|--title` to generate a branch name based on the PR title.
 

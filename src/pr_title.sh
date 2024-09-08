@@ -5,57 +5,39 @@ _CURRENT_DIR="$(dirname "${BASH_SOURCE[0]}")"
 # shellcheck disable=SC1091
 [ -f "$_CURRENT_DIR/pr_ticket.sh" ] && source "$_CURRENT_DIR/pr_ticket.sh"
 
-# shellcheck disable=SC2155
 function pr_title() {
-    branch_name="$1"
-    local ticket_key=$(pr_ticket::key "$branch_name")
-    local ticket_number=$(pr_ticket::number "$branch_name")
+  local branch_name="$1"
+  branch_name="${branch_name#*/}"
+  local ticket_key
+  ticket_key=$(pr_ticket::key "$branch_name")
 
-    if [[ -z "$ticket_key" || -z "$ticket_number" ]]; then
-      normalize_pr_title "$branch_name"
-      return
-    fi
+  local ticket_number
+  ticket_number=$(pr_ticket::number "$branch_name")
 
-    # Initialize prefix and parts as empty
-    prefix=""
-    part1=""
-    part2=""
-    part3=""
+  if [[ -z "$ticket_key" || -z "$ticket_number" ]]; then
+    pr_title::normalize "$branch_name"
+    return
+  fi
 
-    # Remove the prefix if it starts with any prefix followed by '/'
-    if [[ "$branch_name" =~ ^[^/]+/ ]]; then
-        prefix=$(echo "$branch_name" | cut -d'/' -f1)
-        branch_name="${branch_name#*/}"
+  local title
+  title=$(echo "$branch_name" | cut -d'-' -f3- | tr '-' ' '| tr '_' ' ')
+  title="$(echo "${title:0:1}" | tr '[:lower:]' '[:upper:]')${title:1}"
 
-        case "$prefix" in
-            fix|bug|bugfix) prefix="Fix" ;;
-            *)              prefix="" ;;
-        esac
-    fi
-    # Extract and format parts of the branch_name
-    part1=$(echo "$branch_name" | cut -d'-' -f1 | tr '[:lower:]' '[:upper:]')
-    part2=$(echo "$branch_name" | cut -d'-' -f2)
-    part3=$(echo "$branch_name" | cut -d'-' -f3- | tr '-' ' '| tr '_' ' ')
+  # Normalize the template by removing spaces around placeholders
+  local normalized_template
+  normalized_template=$(echo "$PR_TITLE_TEMPLATE" | sed -E 's/\{\{[[:space:]]*([^[:space:]]+)[[:space:]]*\}\}/{{\1}}/g')
 
-    # Ensure there is no duplicated "Fix"
-    if [[ "$part3" =~ Fix || "$part3" =~ fix ]]; then
-        prefix=""
-    fi
+  # Replace placeholders with actual values
+  local formatted
+  formatted="${normalized_template//\{\{TICKET_KEY\}\}/$ticket_key}"
+  formatted="${formatted//\{\{TICKET_NUMBER\}\}/$ticket_number}"
+  formatted="${formatted//\{\{PR_TITLE\}\}/$title}"
 
-    # Construct the final formatted title
-    if [[ -n "$prefix" ]]; then
-        part3="$(echo "$part3" | tr '[:upper:]' '[:lower:]')"
-        echo "$part1-$part2 $prefix $part3"
-    else
-        part3="$(echo "${part3:0:1}" | tr '[:lower:]' '[:upper:]')${part3:1}"
-        echo "$part1-$part2 $part3"
-    fi
+  echo "$formatted"
 }
 
-function normalize_pr_title() {
+function pr_title::normalize() {
   input="$1"
-  # Remove the prefix before the first '/'
-  input="${input#*/}"
   # Remove leading digits followed by a hyphen (e.g., "27-")
   input="${input#[0-9]*-}"
 
