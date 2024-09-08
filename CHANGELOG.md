@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.5 - 2024-09-09
 
 - Support ticket link with number
 - Remove ticket number from PR title when there is no ticket key

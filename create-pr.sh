@@ -2,7 +2,7 @@
 set -euo pipefail
 
 # shellcheck disable=SC2034
-declare -r CREATE_PR_VERSION="0.4.0"
+declare -r CREATE_PR_VERSION="0.5.0"
 
 CREATE_PR_ROOT_DIR="$(dirname "${BASH_SOURCE[0]}")"
 export CREATE_PR_ROOT_DIR
@@ -45,7 +45,7 @@ while [[ $# -gt 0 ]]; do
   shift
 done
 
-PR_LABEL=${LABEL:-${PR_LABEL:-$(pr_label "$BRANCH_NAME" "${PR_LABEL_MAPPING:-}")}}
+PR_LABEL=${PR_LABEL:-${LABEL:-$(pr_label "$BRANCH_NAME" "${PR_LABEL_MAPPING:-}")}}
 PR_TITLE=$(pr_title "$BRANCH_NAME")
 PR_BODY=$(pr_body "$BRANCH_NAME" "$PR_TEMPLATE")
 
