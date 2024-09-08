@@ -1,9 +1,9 @@
 #!/bin/bash
 
-ROOT_DIR="$(dirname "${BASH_SOURCE[0]}")/.."
+CREATE_PR_ROOT_DIR="$(dirname "${BASH_SOURCE[0]}")/.."
 
 function set_up() {
-  source "$ROOT_DIR/src/pr_format.sh"
+  source "$CREATE_PR_ROOT_DIR/src/pr_format.sh"
 }
 
 function test_get_ticket_number_default() {
