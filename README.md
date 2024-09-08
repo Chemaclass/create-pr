@@ -47,7 +47,7 @@ Branch name: `feat/27-my-branch-name`
 
 ```bash
 PR_TICKET_LINK_PREFIX="https://github.com/Chemaclass/create-pr.sh/issues/"
-PR_LINK_PREFIX_TEXT="Closes :"
+PR_LINK_PREFIX_TEXT="Closes: "
 ```
 
 - Result: `Closes: https://github.com/Chemaclass/create-pr.sh/issues/27`
