@@ -23,8 +23,8 @@ function main::create_pr_gitlab() {
   if glab mr create --title "$PR_TITLE" \
                       --target-branch "$BASE_BRANCH" \
                       --source-branch "$BRANCH_NAME" \
-                      --assignee "$ASSIGNEE" \
-                      --label "$LABEL" \
+                      --assignee "$PR_ASSIGNEE" \
+                      --label "$PR_LABEL" \
                       --description "$PR_BODY"; then
     echo "Merge Request created successfully."
   else
