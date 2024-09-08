@@ -31,7 +31,7 @@ function pr_title() {
   local formatted
   formatted="${normalized_template//\{\{TICKET_KEY\}\}/$ticket_key}"
   formatted="${formatted//\{\{TICKET_NUMBER\}\}/$ticket_number}"
-  formatted="${formatted//\{\{BRANCH_NAME\}\}/$title}"
+  formatted="${formatted//\{\{PR_TITLE\}\}/$title}"
 
   echo "$formatted"
 }

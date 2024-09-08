@@ -13,7 +13,7 @@ function test_pr_title_default_template() {
 }
 
 function test_pr_title_custom_template() {
-  export PR_TITLE_TEMPLATE='[{{TICKET_NUMBER}}-{{ TICKET_KEY }}]: {{  BRANCH_NAME  }} 🏗️'
+  export PR_TITLE_TEMPLATE='[{{TICKET_NUMBER}}-{{ TICKET_KEY }}]: {{  PR_TITLE  }} 🏗️'
   actual=$(pr_title "feat/TICKET-0000-my-new-2nd-feature")
 
   assert_same "[0000-TICKET]: My new 2nd feature 🏗️" "$actual"
