@@ -4,26 +4,26 @@ function set_up() {
   source "$CREATE_PR_ROOT_DIR/src/pr_title.sh"
 }
 
-function test_normalize_pr_title() {
-  actual=$(normalize_pr_title "add-pr-create_script")
+function test_pr_title_normalize() {
+  actual=$(pr_title::normalize "add-pr-create_script")
 
   assert_same "Add pr create Script" "$actual"
 }
 
-function test_normalize_pr_title_with_underscores() {
-  actual=$(normalize_pr_title "add_pr_create_script")
+function test_pr_title_normalize_with_underscores() {
+  actual=$(pr_title::normalize "add_pr_create_script")
 
   assert_same "Add Pr Create Script" "$actual"
 }
 
-function test_normalize_pr_title_without_ticket_and_underscores() {
-  actual=$(normalize_pr_title "prefix/add_pr_create_script")
+function test_pr_title_normalize_without_ticket_and_underscores() {
+  actual=$(pr_title::normalize "prefix/add_pr_create_script")
 
   assert_same "Add Pr Create Script" "$actual"
 }
 
-function test_normalize_pr_title_with_prefix_and_ticket_number() {
-  actual=$(normalize_pr_title "prefix/27-add-pr-3-create_script")
+function test_pr_title_normalize_with_prefix_and_ticket_number() {
+  actual=$(pr_title::normalize "prefix/27-add-pr-3-create_script")
 
   assert_same "Add pr 3 create Script" "$actual"
 }

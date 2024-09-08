@@ -12,7 +12,7 @@ function pr_title() {
     local ticket_number=$(pr_ticket::number "$branch_name")
 
     if [[ -z "$ticket_key" || -z "$ticket_number" ]]; then
-      normalize_pr_title "$branch_name"
+      pr_title::normalize "$branch_name"
       return
     fi
 
@@ -52,7 +52,7 @@ function pr_title() {
     fi
 }
 
-function normalize_pr_title() {
+function pr_title::normalize() {
   input="$1"
   # Remove the prefix before the first '/'
   input="${input#*/}"
