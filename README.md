@@ -16,14 +16,14 @@ To build the project yourself, you can do it manually or execute it `./build.sh`
 
 The script is customizable via `.env` variables. See [.env.example](.env.example).
 
-### PR_TEMPLATE_DIR
+### PR_TEMPLATE_PATH
 
 Define the path to locate the PR template. See [template example](.github/PULL_REQUEST_TEMPLATE.md).
 
 #### Example
 
 ```bash
-PR_TEMPLATE_DIR=.github/PULL_REQUEST_TEMPLATE.md
+PR_TEMPLATE_PATH=.github/PULL_REQUEST_TEMPLATE.md
 ```
 
 #### Placeholders
