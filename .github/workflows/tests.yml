@@ -17,9 +17,9 @@ jobs:
           - macos-latest
         include:
           - os: ubuntu-latest
-            script_name: 'lib/bashunit tests/e2e -e .env.tests --debug'
+            script_name: 'make test'
           - os: macos-latest
-            script_name: 'lib/bashunit tests/e2e -e .env.tests --debug'
+            script_name: 'make test'
     steps:
       - name: Checkout
         uses: actions/checkout@v4
