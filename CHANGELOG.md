@@ -8,7 +8,7 @@
 
 ## 0.4 - 2024-09-06
 
-- Fix get_ticket_number when branch name contains numbers
+- Fix pr_ticket_number when branch name contains numbers
 - Load `.env.local` on top of `.env` in case it exists
 - Add `{{BACKGROUND}}` with "Details in the ticket" by default when a ticket link is used
 - Enable spaces inside placeholders
