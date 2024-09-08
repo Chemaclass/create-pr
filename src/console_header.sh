@@ -1,4 +1,5 @@
 #!/bin/bash
+set -o allexport
 
 function console_header::print_version() {
   printf "%s\n" "$CREATE_PR_VERSION"
@@ -17,6 +18,10 @@ Options:
 
   -e|--env <file-path>
     Load a custom env file overriding the .env environment variables.
+
+  -t|--title <PR title> <branch prefix>
+    Generate a branch name based on the PR title.
+    <branch prefix> "feat" by default.
 
   --version
     Displays the current version.

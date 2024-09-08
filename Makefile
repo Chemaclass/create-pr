@@ -41,7 +41,6 @@ help:
 	@echo ""
 	@echo "Commands:"
 	@echo "  test                     Run the tests"
-	@echo "  env/example              Copy variables without the values from .env into .env.example"
 	@echo "  pre_commit/install       Install the pre-commit hook"
 	@echo "  pre_commit/run           Function that will be called when the pre-commit hook runs"
 	@echo "  sa                       Run shellcheck static analysis tool"
@@ -51,17 +50,13 @@ SRC_SCRIPTS_DIR=src
 PRE_COMMIT_SCRIPTS_FILE=./bin/pre-commit
 
 test: $(TEST_SCRIPTS_DIR)
-	@lib/bashunit tests
-
-env/example:
-	@echo "Copying variables without the values from .env into .env.example"
-	@sed 's/=.*/=/' .env > .env.example
+	@lib/bashunit tests -e .env.tests
 
 pre_commit/install:
 	@echo "Installing pre-commit hook"
 	cp $(PRE_COMMIT_SCRIPTS_FILE) $(GIT_DIR)/hooks/
 
-pre_commit/run: test sa lint env/example
+pre_commit/run: test sa lint
 
 sa:
 ifndef STATIC_ANALYSIS_CHECKER

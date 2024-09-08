@@ -1,8 +1,21 @@
 # Changelog
 
+## Unreleased
+
+- Support ticket link with number
+- Remove ticket number from PR title when there is no ticket key
+- Add `PR_LINK_PREFIX_TEXT`
+  - Text to display if the link does not contain a `TICKET_KEY`
+- Add `PR_TITLE_TEMPLATE`
+  - Enable custom PR title with placeholders (`{{TICKET_NUMBER}}`, `{{TICKET_KEY}}`, `{{PR_TITLE}}`)
+  - eg `PR_TITLE_TEMPLATE="{{TICKET_KEY}}-{{TICKET_NUMBER}} {{PR_TITLE}}"`
+- Refactor unique src file into multiple (single scope/responsibility) files
+- Add option `-t|--title` to generate a branch name based on the PR title.
+- Replace `PR_TEMPLATE_DIR` to `PR_TEMPLATE_PATH`
+
 ## 0.4 - 2024-09-06
 
-- Fix get_ticket_number when branch name contains numbers
+- Fix pr_ticket_number when branch name contains numbers
 - Load `.env.local` on top of `.env` in case it exists
 - Add `{{BACKGROUND}}` with "Details in the ticket" by default when a ticket link is used
 - Enable spaces inside placeholders
