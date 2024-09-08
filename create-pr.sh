@@ -8,6 +8,7 @@ CREATE_PR_ROOT_DIR="$(dirname "${BASH_SOURCE[0]}")"
 export CREATE_PR_ROOT_DIR
 
 source "$CREATE_PR_ROOT_DIR/src/dev/debug.sh"
+source "$CREATE_PR_ROOT_DIR/src/helpers.sh"
 source "$CREATE_PR_ROOT_DIR/src/validation.sh"
 source "$CREATE_PR_ROOT_DIR/src/pr_ticket.sh"
 source "$CREATE_PR_ROOT_DIR/src/pr_body.sh"
@@ -30,6 +31,10 @@ while [[ $# -gt 0 ]]; do
       ;;
     -v|--version)
       console_header::print_version
+      trap '' EXIT && exit 0
+      ;;
+    -t|--title)
+      helpers::generate_branch_name "$2" "${3:-}"
       trap '' EXIT && exit 0
       ;;
     --help)
