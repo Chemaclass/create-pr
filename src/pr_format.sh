@@ -47,6 +47,7 @@ function format_title() {
         echo "$part1-$part2 $part3"
     fi
 }
+
 function normalize_pr_title() {
   input="$1"
   # Remove the prefix before the first '/'
