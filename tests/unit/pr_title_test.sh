@@ -1,7 +1,22 @@
 #!/bin/bash
 
 function set_up() {
+  source "$CREATE_PR_ROOT_DIR/src/env_configuration.sh"
   source "$CREATE_PR_ROOT_DIR/src/pr_title.sh"
+  source "$CREATE_PR_ROOT_DIR/src/pr_body.sh"
+}
+
+function test_pr_title_default_template() {
+  actual=$(pr_title "feat/TICKET-0000-my-new-1st-feature")
+
+  assert_same "TICKET-0000 My new 1st feature" "$actual"
+}
+
+function test_pr_title_custom_template() {
+  export PR_TITLE_TEMPLATE='[{{TICKET_NUMBER}}-{{TICKET_KEY}}]: {{BRANCH_NAME}} 🏗️'
+  actual=$(pr_title "feat/TICKET-0000-my-new-2nd-feature")
+
+  assert_same "[0000-TICKET]: My new 2nd feature 🏗️" "$actual"
 }
 
 function test_pr_title_with_underscores_no_prefix() {

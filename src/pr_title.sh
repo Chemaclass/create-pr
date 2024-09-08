@@ -23,7 +23,13 @@ function pr_title() {
   title=$(echo "$branch_name" | cut -d'-' -f3- | tr '-' ' '| tr '_' ' ')
   title="$(echo "${title:0:1}" | tr '[:lower:]' '[:upper:]')${title:1}"
 
-  echo "$ticket_key-$ticket_number $title"
+  # Replace placeholders with actual values
+  local formatted
+  formatted="${PR_TITLE_TEMPLATE//\{\{TICKET_KEY\}\}/$ticket_key}"
+  formatted="${formatted//\{\{TICKET_NUMBER\}\}/$ticket_number}"
+  formatted="${formatted//\{\{BRANCH_NAME\}\}/$title}"
+
+  echo "$formatted"
 }
 
 function pr_title::normalize() {
