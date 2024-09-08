@@ -15,13 +15,7 @@ BASE_BRANCH=${BASE_BRANCH:-"main"}
 ASSIGNEE=${ASSIGNEE:-"@me"}
 
 BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD 2>/dev/null) || error_and_exit "Failed to get the current branch name."
-LABEL=${LABEL:-$(pr_label "$BRANCH_NAME" "${PR_LABEL_MAPPING:-}")}
-PR_TITLE=$(pr_title "$BRANCH_NAME")
-PR_BODY=$(pr_body "$BRANCH_NAME" "$PR_TEMPLATE")
 
 export BASE_BRANCH
 export ASSIGNEE
 export BRANCH_NAME
-export LABEL
-export PR_TITLE
-export PR_BODY

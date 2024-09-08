@@ -40,6 +40,14 @@ while [[ $# -gt 0 ]]; do
   shift
 done
 
+LABEL=${LABEL:-$(pr_label "$BRANCH_NAME" "${PR_LABEL_MAPPING:-}")}
+PR_TITLE=$(pr_title "$BRANCH_NAME")
+PR_BODY=$(pr_body "$BRANCH_NAME" "$PR_TEMPLATE")
+
+export LABEL
+export PR_TITLE
+export PR_BODY
+
 main::create_pr
 
 echo "Pull request created successfully."
