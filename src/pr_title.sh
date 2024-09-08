@@ -7,50 +7,28 @@ _CURRENT_DIR="$(dirname "${BASH_SOURCE[0]}")"
 
 # shellcheck disable=SC2155
 function pr_title() {
-    local branch_name="$1"
-    local ticket_key=$(pr_ticket::key "$branch_name")
-    local ticket_number=$(pr_ticket::number "$branch_name")
+  local branch_name="$1"
+  branch_name="${branch_name#*/}"
+  local ticket_key=$(pr_ticket::key "$branch_name")
+  local ticket_number=$(pr_ticket::number "$branch_name")
 
-    if [[ -z "$ticket_key" || -z "$ticket_number" ]]; then
-      pr_title::normalize "$branch_name"
-      return
-    fi
+  if [[ -z "$ticket_key" || -z "$ticket_number" ]]; then
+    pr_title::normalize "$branch_name"
+    return
+  fi
 
-    # Initialize prefix and parts as empty
-    local branch_prefix=""
-    local ticket_key=""
-    local ticket_number=""
-    local title_prefix=""
-    local title=""
+  # Initialize prefix and parts as empty
+  local ticket_key=""
+  local ticket_number=""
+  local title=""
 
-    # Remove the prefix if it starts with any prefix followed by '/'
-    if [[ "$branch_name" =~ ^[^/]+/ ]]; then
-        branch_prefix=$(echo "$branch_name" | cut -d'/' -f1)
-        branch_name="${branch_name#*/}"
+  # Extract and format parts of the branch_name
+  ticket_key=$(echo "$branch_name" | cut -d'-' -f1 | tr '[:lower:]' '[:upper:]')
+  ticket_number=$(echo "$branch_name" | cut -d'-' -f2)
+  title=$(echo "$branch_name" | cut -d'-' -f3- | tr '-' ' '| tr '_' ' ')
 
-        case "$branch_prefix" in
-            fix|bug|bugfix) title_prefix="Fix" ;;
-            *)              title_prefix="" ;;
-        esac
-    fi
-    # Extract and format parts of the branch_name
-    ticket_key=$(echo "$branch_name" | cut -d'-' -f1 | tr '[:lower:]' '[:upper:]')
-    ticket_number=$(echo "$branch_name" | cut -d'-' -f2)
-    title=$(echo "$branch_name" | cut -d'-' -f3- | tr '-' ' '| tr '_' ' ')
-
-    # Ensure there is no duplicated "Fix"
-    if [[ "$title" =~ Fix || "$title" =~ fix ]]; then
-        title_prefix=""
-    fi
-
-    # Construct the final formatted title
-    if [[ -n "$title_prefix" ]]; then
-      title="$(echo "$title" | tr '[:upper:]' '[:lower:]')"
-      echo "$ticket_key-$ticket_number $title_prefix $title"
-    else
-      title="$(echo "${title:0:1}" | tr '[:lower:]' '[:upper:]')${title:1}"
-      echo "$ticket_key-$ticket_number $title"
-    fi
+  title="$(echo "${title:0:1}" | tr '[:lower:]' '[:upper:]')${title:1}"
+  echo "$ticket_key-$ticket_number $title"
 }
 
 function pr_title::normalize() {

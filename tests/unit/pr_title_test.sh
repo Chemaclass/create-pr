@@ -71,7 +71,7 @@ function test_pr_title_with_fix_prefix() {
   local prefix=$1
   actual=$(pr_title "$prefix/TICKET-0000-something-was-broken")
 
-  assert_same "TICKET-0000 Fix something was broken" "$actual"
+  assert_same "TICKET-0000 Something was broken" "$actual"
 }
 
 # data_provider provider_fix_prefix
@@ -79,7 +79,7 @@ function test_pr_title_with_fix_prefix_and_bug_in_branch_name() {
   local prefix=$1
   actual=$(pr_title "$prefix/TICKET-0000-bug-something-was-broken")
 
-  assert_same "TICKET-0000 Fix bug something was broken" "$actual"
+  assert_same "TICKET-0000 Bug something was broken" "$actual"
 }
 
 # data_provider provider_fix_prefix
