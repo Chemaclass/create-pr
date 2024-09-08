@@ -45,6 +45,7 @@ APP_ROOT_DIR=$(git rev-parse --show-toplevel) || error_and_exit "This directory 
 PR_TEMPLATE_DIR=${PR_TEMPLATE_DIR:-".github/PULL_REQUEST_TEMPLATE.md"}
 PR_TEMPLATE="$APP_ROOT_DIR/$PR_TEMPLATE_DIR"
 [ -z "$PR_TEMPLATE" ] && error_and_exit "PR template file $PR_TEMPLATE not found."
+PR_TICKET_PREFIX_TEXT=${PR_TICKET_PREFIX_TEXT:-""}
 
 BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD 2>/dev/null) || error_and_exit "Failed to get the current branch name."
 BASE_BRANCH=${BASE_BRANCH:-"main"}

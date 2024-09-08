@@ -41,12 +41,21 @@ function test_format_pr_body_link_without_PR_TICKET_LINK_PREFIX() {
   assert_contains "Nope" "$actual"
 }
 
-function test_format_pr_body_link_without_ticket_key() {
+function test_format_pr_body_link_without_ticket_key_default_link_prefix_text() {
   export PR_TICKET_LINK_PREFIX=https://your-ticket-system.com/
 
   local actual=$(format_pr_body "123-my_branch" "$ROOT_DIR/.github/PULL_REQUEST_TEMPLATE.md")
 
-  assert_contains "Closes: https://your-ticket-system.com/123" "$actual"
+  assert_contains "https://your-ticket-system.com/123" "$actual"
+}
+
+function test_format_pr_body_link_custom_link_prefix_text() {
+  export PR_TICKET_LINK_PREFIX=https://your-ticket-system.com/
+  export PR_TICKET_PREFIX_TEXT="Fixes: "
+
+  local actual=$(format_pr_body "123-my_branch" "$ROOT_DIR/.github/PULL_REQUEST_TEMPLATE.md")
+
+  assert_contains "Fixes: https://your-ticket-system.com/123" "$actual"
 }
 
 function test_format_pr_body_link_without_ticket_number() {
@@ -55,6 +64,7 @@ function test_format_pr_body_link_without_ticket_number() {
   local actual=$(format_pr_body "TICKET-my_branch" "$ROOT_DIR/.github/PULL_REQUEST_TEMPLATE.md")
 
   assert_not_contains "https://your-ticket-system.com/" "$actual"
+  assert_not_contains "Closes: Nope" "$actual"
   assert_contains "Nope" "$actual"
 }
 

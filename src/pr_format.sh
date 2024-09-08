@@ -166,11 +166,12 @@ function format_pr_body() {
   # {{TICKET_LINK}}
   local ticket_link="Nope"
   if [[ "$with_link" == true ]]; then
-      if [[ -z "$ticket_key" ]]; then
-        ticket_link="Closes: ${PR_TICKET_LINK_PREFIX}${ticket_number}"
-      else
-        ticket_link="${PR_TICKET_LINK_PREFIX}${ticket_key}-${ticket_number}"
-      fi
+    if [[ -z "$ticket_key" ]]; then
+      ticket_link="${PR_TICKET_LINK_PREFIX}${ticket_number}"
+    else
+      ticket_link="${PR_TICKET_LINK_PREFIX}${ticket_key}-${ticket_number}"
+    fi
+    ticket_link="${PR_TICKET_PREFIX_TEXT}${ticket_link}"
   fi
   pr_body=$(perl -pe 's/<!--\s*{{\s*(.*?)\s*}}\s*-->/{{ $1 }}/g' "$pr_template")
   pr_body=$(echo "$pr_body" | sed "s|{{[[:space:]]*TICKET_LINK[[:space:]]*}}|$ticket_link|g")
