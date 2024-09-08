@@ -35,7 +35,7 @@ function test_pr_body_link_without_ticket_key() {
 
 function test_pr_body_link_with_pr_ticket_prefix_text() {
   export PR_TICKET_LINK_PREFIX=https://your-ticket-system.com/
-  export PR_TICKET_PREFIX_TEXT="Fixes: "
+  export PR_LINK_PREFIX_TEXT="Fixes: "
 
   local actual=$(pr_body "123-my_branch"\
     "$CREATE_PR_ROOT_DIR/.github/PULL_REQUEST_TEMPLATE.md")

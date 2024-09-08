@@ -13,30 +13,40 @@ To build the project yourself, you can do it manually or execute it `./build.sh`
 
 ## How to use it?
 
-Optional env vars:
-- `PR_TEMPLATE_DIR=.github/PULL_REQUEST_TEMPLATE.md`
-  - See [example](.github/PULL_REQUEST_TEMPLATE.md)
+Customizable envs:
+- `PR_TEMPLATE_DIR`
+  - `PR_TEMPLATE_DIR=.github/PULL_REQUEST_TEMPLATE.md` [example](.github/PULL_REQUEST_TEMPLATE.md)
   - Placeholders:
+    - You can define them inside a comment to avoid rendering them when creating a PR without this script
+        - eg `<!-- {{ TICKET_LINK }} -->`
     - `{{ TICKET_LINK }}`
       - Uses `PR_TICKET_LINK_PREFIX` appending the ticket key and number to form the full URL
     - `{{ BACKGROUND }}`
       - if link is found: `Details in the ticket.`
       - if link is not found: `Provide some context to the reviewer before jumping in the code.`
-  - You can define them inside a comment to avoid rendering them when creating a PR without this script
-    - eg `<!-- {{ TICKET_LINK }} -->`
-    - eg `<!-- {{ BACKGROUND }} -->`
-- `LABEL` define a label for the PR
-  - eg `LABEL=enhancement`
-  - If empty then extract label from the branch's prefix - see PR_LABEL_MAPPING
+
+- `PR_LINK_PREFIX_TEXT`
+  - Text to display if the link does not contain a `TICKET_KEY`
+  - eg `Closes: https://github.com/Chemaclass/create-pr.sh/issues/27`
+    - branch: `feat/27-my-branch-name`
+    - `PR_TICKET_LINK_PREFIX="https://github.com/Chemaclass/create-pr.sh/issues/"`
+    - `PR_LINK_PREFIX_TEXT="Closes :"`
+- `PR_TITLE_TEMPLATE`
+  - Enable custom PR title with placeholders: `{{TICKET_NUMBER}}`, `{{TICKET_KEY}}`, `{{PR_TITLE}}`
+  - eg `PR_TITLE_TEMPLATE="{{TICKET_KEY}}-{{TICKET_NUMBER}} {{PR_TITLE}}"`
+- `PR_LABEL`
+  - Define a label for the PR
+  - eg `PR_LABEL=enhancement`
+  - If empty then extract label from the branch's prefix - see `PR_LABEL_MAPPING`
 - `PR_LABEL_MAPPING`
-  - eg `PR_LABEL_MAPPING="feat:enhancement; fix|bug:bug; default:extra"`
   - Define a custom mapping from prefix branches to GitHub label
+  - eg `PR_LABEL_MAPPING="feat:enhancement; fix|bug:bug; default:extra"`
     - eg `feat/your-branch` -> `enhancement` label
     - eg `fix/your-branch` -> `bug` label
     - eg `bug/your-branch` -> `bug` label
     - eg `unkown/your-branch` -> `extra` label
+- `PR_ASSIGNEE` or `@me` by default
 - `BASE_BRANCH` or `main` by default
-- `ASSIGNEE` or `@me` by default
 
 ### HINTS
 

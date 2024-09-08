@@ -30,7 +30,7 @@ function pr_body() {
     else
       ticket_link="${PR_TICKET_LINK_PREFIX}${ticket_key}-${ticket_number}"
     fi
-    ticket_link="${PR_TICKET_PREFIX_TEXT}${ticket_link}"
+    ticket_link="${PR_LINK_PREFIX_TEXT}${ticket_link}"
   fi
   result=$(perl -pe 's/<!--\s*{{\s*(.*?)\s*}}\s*-->/{{ $1 }}/g' "$pr_template")
   result=$(echo "$result" | sed "s|{{[[:space:]]*TICKET_LINK[[:space:]]*}}|$ticket_link|g")
