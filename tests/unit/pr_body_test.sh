@@ -3,7 +3,7 @@
 # shellcheck disable=SC2155
 
 function set_up() {
-  source "$CREATE_PR_ROOT_DIR/src/pr_format.sh"
+  source "$CREATE_PR_ROOT_DIR/src/pr_body.sh"
 }
 
 function test_format_pr_body_link_without_comment() {

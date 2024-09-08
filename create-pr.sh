@@ -9,6 +9,7 @@ export CREATE_PR_ROOT_DIR
 
 source "$CREATE_PR_ROOT_DIR/src/dev/debug.sh"
 source "$CREATE_PR_ROOT_DIR/src/validation.sh"
+source "$CREATE_PR_ROOT_DIR/src/pr_body.sh"
 source "$CREATE_PR_ROOT_DIR/src/pr_format.sh"
 source "$CREATE_PR_ROOT_DIR/src/env_configuration.sh"
 source "$CREATE_PR_ROOT_DIR/src/console_header.sh"
