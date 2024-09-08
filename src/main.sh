@@ -15,8 +15,8 @@ function main::create_pr() {
   if ! gh pr create --title "$PR_TITLE" \
                     --base "$BASE_BRANCH" \
                     --head "$BRANCH_NAME" \
-                    --assignee "$ASSIGNEE" \
-                    --label "$LABEL" \
+                    --assignee "$PR_ASSIGNEE" \
+                    --label "$PR_LABEL" \
                     --body "$PR_BODY"; then
       error_and_exit "Failed to create the pull request."\
         "Ensure you have the correct permissions and the repository is properly configured."
