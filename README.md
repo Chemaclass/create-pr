@@ -3,8 +3,7 @@
 A bash script that helps create your PRs.
 It normalised the PR title, description, assignee by default and initial label based on your branch name.
 
-> It requires
-> - GitHub: https://cli.github.com/
+> It requires https://cli.github.com/ (currently only supports GitHub)
 
 ## Installation
 
