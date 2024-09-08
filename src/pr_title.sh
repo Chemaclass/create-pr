@@ -15,7 +15,7 @@ function pr_title() {
   ticket_number=$(pr_ticket::number "$branch_name")
 
   if [[ -z "$ticket_key" || -z "$ticket_number" ]]; then
-    pr_title::normalize "$branch_name"
+    pr_title::without_ticket "$branch_name"
     return
   fi
 
@@ -36,7 +36,7 @@ function pr_title() {
   echo "$formatted"
 }
 
-function pr_title::normalize() {
+function pr_title::without_ticket() {
   input="$1"
   # Remove leading digits followed by a hyphen (e.g., "27-")
   input="${input#[0-9]*-}"
