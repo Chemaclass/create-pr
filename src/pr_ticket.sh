@@ -2,13 +2,13 @@
 set -o allexport
 
 # $1 = branch_name
-function pr_ticket_number() {
+function pr_ticket::number() {
   branch_name=$1
   echo "$branch_name" | grep -oE "[0-9]+" | head -n 1
 }
 
 # $1 = branch_name
-function pr_ticket_key() {
+function pr_ticket::key() {
   branch_name=$1
 
   # Check if the branch name contains a '/'

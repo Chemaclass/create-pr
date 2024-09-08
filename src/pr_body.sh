@@ -12,10 +12,10 @@ function pr_body() {
   local result
 
   local ticket_key
-  ticket_key=$(pr_ticket_key "$branch_name")
+  ticket_key=$(pr_ticket::key "$branch_name")
 
   local ticket_number
-  ticket_number=$(pr_ticket_number "$branch_name")
+  ticket_number=$(pr_ticket::number "$branch_name")
 
   local with_link=false
   if [[ -n "${PR_TICKET_LINK_PREFIX}" && -n "${ticket_number}" ]]; then

@@ -8,8 +8,8 @@ _CURRENT_DIR="$(dirname "${BASH_SOURCE[0]}")"
 # shellcheck disable=SC2155
 function pr_title() {
     branch_name="$1"
-    local ticket_key=$(pr_ticket_key "$branch_name")
-    local ticket_number=$(pr_ticket_number "$branch_name")
+    local ticket_key=$(pr_ticket::key "$branch_name")
+    local ticket_number=$(pr_ticket::number "$branch_name")
 
     if [[ -z "$ticket_key" || -z "$ticket_number" ]]; then
       normalize_pr_title "$branch_name"
