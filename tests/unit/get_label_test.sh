@@ -3,8 +3,6 @@
 # shellcheck disable=SC2046
 # shellcheck disable=SC2155
 
-CREATE_PR_ROOT_DIR="$(dirname "${BASH_SOURCE[0]}")/.."
-
 function set_up() {
   source "$CREATE_PR_ROOT_DIR/src/pr_format.sh"
 }
