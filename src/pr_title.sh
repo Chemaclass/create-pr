@@ -23,9 +23,13 @@ function pr_title() {
   title=$(echo "$branch_name" | cut -d'-' -f3- | tr '-' ' '| tr '_' ' ')
   title="$(echo "${title:0:1}" | tr '[:lower:]' '[:upper:]')${title:1}"
 
+  # Normalize the template by removing spaces around placeholders
+  local normalized_template
+  normalized_template=$(echo "$PR_TITLE_TEMPLATE" | sed -E 's/\{\{[[:space:]]*([^[:space:]]+)[[:space:]]*\}\}/{{\1}}/g')
+
   # Replace placeholders with actual values
   local formatted
-  formatted="${PR_TITLE_TEMPLATE//\{\{TICKET_KEY\}\}/$ticket_key}"
+  formatted="${normalized_template//\{\{TICKET_KEY\}\}/$ticket_key}"
   formatted="${formatted//\{\{TICKET_NUMBER\}\}/$ticket_number}"
   formatted="${formatted//\{\{BRANCH_NAME\}\}/$title}"
 
