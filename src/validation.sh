@@ -1,4 +1,5 @@
 #!/bin/bash
+set -o allexport
 
 GH_CLI_INSTALLATION_URL="https://cli.github.com/"
 

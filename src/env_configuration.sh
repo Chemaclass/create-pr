@@ -1,8 +1,6 @@
 #!/bin/bash
 set -o allexport
 
-# shellcheck disable=SC2155
-
 # shellcheck source=/dev/null
 [[ -f ".env" ]] && source .env set
 set +o allexport

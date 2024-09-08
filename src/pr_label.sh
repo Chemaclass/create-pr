@@ -1,4 +1,5 @@
 #!/bin/bash
+set -o allexport
 
 # Find the default label based on the branch prefix
 function pr_label() {

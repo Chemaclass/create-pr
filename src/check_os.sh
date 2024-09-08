@@ -1,4 +1,5 @@
 #!/bin/bash
+set -o allexport
 
 # shellcheck disable=SC2034
 _OS="Unknown"

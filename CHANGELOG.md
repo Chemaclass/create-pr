@@ -5,6 +5,7 @@
 - Support ticket link with number
 - Remove ticket number from PR title when there is no ticket key
 - Add `PR_TICKET_PREFIX_TEXT`
+- Refactor unique src file into multiple (single scope/responsibility) files
 
 ## 0.4 - 2024-09-06
 

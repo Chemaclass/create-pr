@@ -1,7 +1,8 @@
 #!/bin/bash
+set -o allexport
 
-# shellcheck disable=SC1091
 _CURRENT_DIR="$(dirname "${BASH_SOURCE[0]}")"
+# shellcheck disable=SC1091
 [ -f "$_CURRENT_DIR/pr_ticket.sh" ] && source "$_CURRENT_DIR/pr_ticket.sh"
 
 # shellcheck disable=SC2155

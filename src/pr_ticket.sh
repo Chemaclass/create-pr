@@ -1,4 +1,5 @@
 #!/bin/bash
+set -o allexport
 
 # $1 = branch_name
 function pr_ticket_number() {
