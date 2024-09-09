@@ -2,7 +2,6 @@
 
 function set_up() {
   source "$CREATE_PR_ROOT_DIR/src/pr_title.sh"
-  source "$CREATE_PR_ROOT_DIR/src/pr_body.sh"
 }
 
 function test_pr_title_no_template() {

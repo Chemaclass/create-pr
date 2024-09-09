@@ -53,6 +53,12 @@ export PR_LABEL
 export PR_TITLE
 export PR_BODY
 
-main::create_pr
+if [[ -n "${DEBUG:-}" && "$DEBUG" == true ]]; then
+  dump "PR_LABEL: $PR_LABEL"
+  dump "PR_TITLE: $PR_TITLE"
+  dump "PR_BODY: $PR_BODY"
+else
+  main::create_pr
+fi
 
 echo "Pull request created successfully."
