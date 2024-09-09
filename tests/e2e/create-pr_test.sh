@@ -5,10 +5,7 @@ function set_up() {
   export PR_TICKET_LINK_PREFIX="https://github.com/Chemaclass/create-pr.sh/issues/"
   export PR_LINK_PREFIX_TEXT="Closes: "
   export PR_TITLE_TEMPLATE="{{TICKET_KEY}}-{{TICKET_NUMBER}} {{PR_TITLE}}"
-  export PR_LABEL_MAPPING="docs:documentation;\
-    feat|feature:enhancement;\
-    fix|bug|bugfix|hotfix:bug;\
-    default:enhancement"
+  export PR_LABEL_MAPPING="default:enhancement;"
 
   SCRIPT="$CREATE_PR_ROOT_DIR/create-pr.sh"
 }
