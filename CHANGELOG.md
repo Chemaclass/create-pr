@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Fix additional single quotes on PR_TITLE_TEMPLATE
+
 ## 0.5 - 2024-09-09
 
 - Support ticket link with number
