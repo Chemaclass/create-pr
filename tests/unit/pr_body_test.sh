@@ -3,6 +3,8 @@
 # shellcheck disable=SC2155
 
 function set_up() {
+  PR_LINK_PREFIX_TEXT=""
+
   source "$CREATE_PR_ROOT_DIR/src/pr_body.sh"
 }
 

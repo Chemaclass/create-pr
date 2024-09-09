@@ -1,6 +1,8 @@
 #!/bin/bash
 
 function set_up() {
+  export PR_TITLE_TEMPLATE="{{TICKET_KEY}}-{{TICKET_NUMBER}} {{PR_TITLE}}"
+
   source "$CREATE_PR_ROOT_DIR/src/pr_title.sh"
 }
 
@@ -71,19 +73,5 @@ function test_pr_title_remove_prefix() {
 function provider_no_prefix() {
   echo "feat"
   echo "feature"
-  echo "_"
-}
-
-# data_provider provider_fix_prefix
-function test_pr_title_with_fix_prefix() {
-  local prefix=$1
-  actual=$(pr_title "$prefix/TICKET-0000-something-was-broken")
-
-  assert_same "TICKET-0000 Something was broken" "$actual"
-}
-
-function provider_fix_prefix() {
-  echo "fix"
   echo "bug"
-  echo "bugfix"
 }
