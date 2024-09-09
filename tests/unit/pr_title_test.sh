@@ -13,11 +13,25 @@ function test_pr_title_no_template() {
   assert_same "" "$actual"
 }
 
-function test_pr_title_custom_template() {
+function test_pr_title_custom_template_with_ticket_key_number_title() {
   export PR_TITLE_TEMPLATE='[{{TICKET_NUMBER}}-{{ TICKET_KEY }}]: {{  PR_TITLE  }} 🏗️'
   actual=$(pr_title "feat/TICKET-0000-my-new-2nd-feature")
 
   assert_same "[0000-TICKET]: My new 2nd feature 🏗️" "$actual"
+}
+
+function test_pr_title_custom_template_with_ticket_number_title() {
+  skip
+  export PR_TITLE_TEMPLATE='[{{TICKET_NUMBER}}]: {{  PR_TITLE  }} 🏗️'
+  actual=$(pr_title "feat/123-my-new-2nd-feature")
+#  assert_same "[123]: My new 2nd feature 🏗️" "$actual"
+}
+
+function test_pr_title_custom_template_with_ticket_key_title() {
+  skip
+  export PR_TITLE_TEMPLATE='[{{TICKET_KEY}}]: {{  PR_TITLE  }} 🏗️'
+  actual=$(pr_title "feat/KEY-my-new-2nd-feature")
+#  assert_same "[KEY]: My new 2nd feature 🏗️" "$actual"
 }
 
 function test_pr_title_with_underscores_no_prefix() {
