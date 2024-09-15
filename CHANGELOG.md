@@ -1,6 +1,6 @@
 # Changelog
 
-## [0.6](https://github.com/Chemaclass/create-pr/compare/0.15.0...0.16.0) - 2024-09-15
+## [0.6](https://github.com/Chemaclass/create-pr/compare/0.5...0.6) - 2024-09-15
 
 - Fix additional single quotes on PR_TITLE_TEMPLATE
 - Improve feedback when given wrong PR template
@@ -9,7 +9,7 @@
 - Rename build executable script to `create-pr`
 - Allow passing extra arguments to the `gh` or `glab` tools
 
-## [0.5](https://github.com/Chemaclass/create-pr/compare/0.15.0...0.16.0) - 2024-09-09
+## [0.5](https://github.com/Chemaclass/create-pr/compare/0.4...0.5) - 2024-09-09
 
 - Support ticket link with number
 - Remove ticket number from PR title when there is no ticket key
