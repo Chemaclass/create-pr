@@ -87,10 +87,10 @@ Define a mapping from prefix branches to GitHub label.
 #### Example
 
 ```bash
-PR_LABEL_MAPPING="feat|feature:enhancement; fix|bug|bugfix|hotfix:bug; default:enhancement"
+PR_LABEL_MAPPING="docs:documentation; fix|bug|bugfix|hotfix:bug; default:enhancement"
 ```
 
-- eg `feat/your-branch` -> `enhancement` label
+- eg `docs/your-branch` -> `documentation` label
 - eg `fix/your-branch` -> `bug` label
 - eg `bug/your-branch` -> `bug` label
 - eg `unknown/your-branch` -> `enhancement` label
