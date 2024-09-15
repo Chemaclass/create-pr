@@ -65,4 +65,4 @@ else
   main::create_pr
 fi
 
-echo "Pull request created successfully."
+echo "Script finished successfully."
