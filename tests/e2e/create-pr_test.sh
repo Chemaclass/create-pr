@@ -1,8 +1,8 @@
 #!/bin/bash
 
 function set_up() {
-  export REMOTE_URL="git@github.com:Chemaclass/create-pr.sh.git"
   export APP_CREATE_PR_ROOT_DIR=.
+  export REMOTE_URL="git@github.com:Chemaclass/create-pr.sh.git"
   export BASE_BRANCH="main"
   export BRANCH_NAME="feat/ticket-123-my_branch-name"
   export PR_TEMPLATE_PATH=".github/PULL_REQUEST_TEMPLATE.md"
@@ -14,22 +14,16 @@ function set_up() {
   SCRIPT="$CREATE_PR_ROOT_DIR/create-pr.sh"
 }
 
-function tear_down_after_script() {
-  export DEBUG=false
-}
-
 function test_success() {
   spy git
   spy gh
-  export DEBUG=false
 
   assert_match_snapshot "$($SCRIPT)"
 }
 
-function test_debug_success() {
+function test_script_with_debug() {
   spy git
   spy gh
-  export DEBUG=true
 
-  assert_match_snapshot "$($SCRIPT)"
+  assert_match_snapshot "$($SCRIPT --debug)"
 }
