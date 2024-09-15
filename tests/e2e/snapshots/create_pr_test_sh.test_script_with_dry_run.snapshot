@@ -1,0 +1,30 @@
+REMOTE_URL: git@github.com:Chemaclass/create-pr.git
+BRANCH_NAME: feat/ticket-123-my_branch-name
+PR_USING_CLIENT: github
+PR_TEMPLATE: ./.github/PULL_REQUEST_TEMPLATE.md
+PR_LABEL: enhancement
+PR_TITLE: TICKET-123 My branch name
+PR_BODY:
+### 🔗 Ticket
+
+Closes: https://github.com/Chemaclass/create-pr/issues/TICKET-123
+
+## 🤔 Background
+
+Details in the ticket.
+
+## 💡 Goal
+
+<!-- The goal of this PR. -->
+
+## 🔖 Changes
+
+<!-- List individual changes in more detail as you might consider them important. -->
+
+## 🖼️ Screenshots
+
+<!-- Consider adding BEFORE and AFTER screenshots. -->
+
+#### BEFORE
+
+#### AFTER
