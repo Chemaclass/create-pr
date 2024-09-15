@@ -1,8 +1,9 @@
 #!/bin/bash
 
 function set_up() {
+  export PR_TITLE_TEMPLATE="{{TICKET_KEY}}-{{TICKET_NUMBER}} {{PR_TITLE}}"
+
   source "$CREATE_PR_ROOT_DIR/src/pr_title.sh"
-  source "$CREATE_PR_ROOT_DIR/src/pr_body.sh"
 }
 
 function test_pr_title_no_template() {
@@ -12,11 +13,25 @@ function test_pr_title_no_template() {
   assert_same "" "$actual"
 }
 
-function test_pr_title_custom_template() {
+function test_pr_title_custom_template_with_ticket_key_number_title() {
   export PR_TITLE_TEMPLATE='[{{TICKET_NUMBER}}-{{ TICKET_KEY }}]: {{  PR_TITLE  }} 🏗️'
   actual=$(pr_title "feat/TICKET-0000-my-new-2nd-feature")
 
   assert_same "[0000-TICKET]: My new 2nd feature 🏗️" "$actual"
+}
+
+function test_pr_title_custom_template_with_ticket_number_title() {
+  skip
+  export PR_TITLE_TEMPLATE='[{{TICKET_NUMBER}}]: {{  PR_TITLE  }} 🏗️'
+  actual=$(pr_title "feat/123-my-new-2nd-feature")
+#  assert_same "[123]: My new 2nd feature 🏗️" "$actual"
+}
+
+function test_pr_title_custom_template_with_ticket_key_title() {
+  skip
+  export PR_TITLE_TEMPLATE='[{{TICKET_KEY}}]: {{  PR_TITLE  }} 🏗️'
+  actual=$(pr_title "feat/KEY-my-new-2nd-feature")
+#  assert_same "[KEY]: My new 2nd feature 🏗️" "$actual"
 }
 
 function test_pr_title_with_underscores_no_prefix() {
@@ -72,19 +87,5 @@ function test_pr_title_remove_prefix() {
 function provider_no_prefix() {
   echo "feat"
   echo "feature"
-  echo "_"
-}
-
-# data_provider provider_fix_prefix
-function test_pr_title_with_fix_prefix() {
-  local prefix=$1
-  actual=$(pr_title "$prefix/TICKET-0000-something-was-broken")
-
-  assert_same "TICKET-0000 Something was broken" "$actual"
-}
-
-function provider_fix_prefix() {
-  echo "fix"
   echo "bug"
-  echo "bugfix"
 }

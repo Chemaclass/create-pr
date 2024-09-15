@@ -1,0 +1,28 @@
+[[33mDUMP[0m] [32m./create-pr.sh:57: [0mBRANCH_NAME: feat/ticket-123-my_branch-name
+[[33mDUMP[0m] [32m./create-pr.sh:58: [0mPR_TEMPLATE: ./.github/PULL_REQUEST_TEMPLATE.md
+[[33mDUMP[0m] [32m./create-pr.sh:59: [0mPR_LABEL: enhancement
+[[33mDUMP[0m] [32m./create-pr.sh:60: [0mPR_TITLE: TICKET-123 My branch name
+[[33mDUMP[0m] [32m./create-pr.sh:61: [0mPR_BODY: ### 🔗 Ticket
+
+Closes: https://github.com/Chemaclass/create-pr.sh/issues/TICKET-123
+
+## 🤔 Background
+
+Details in the ticket.
+
+## 💡 Goal
+
+<!-- The goal of this PR. -->
+
+## 🔖 Changes
+
+<!-- List individual changes in more detail as you might consider them important. -->
+
+## 🖼️ Screenshots
+
+<!-- Consider adding BEFORE and AFTER screenshots. -->
+
+#### BEFORE
+
+#### AFTER
+Pull request created successfully.

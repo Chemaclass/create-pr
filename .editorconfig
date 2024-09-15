@@ -20,6 +20,14 @@ indent_style = tab
 [{lib/*,README.md}]
 indent_size = unset
 
+[{tests/acceptance/**.sh,src/console_header.sh}]
+indent_size = unset
+
+[tests/**/*.snapshot]
+indent_size = unset
+max_line_length = unset
+trim_trailing_whitespace = false
+
 [bin/*]
 charset = unset
 end_of_line = unset

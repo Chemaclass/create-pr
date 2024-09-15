@@ -9,14 +9,21 @@ _CURRENT_DIR="$(dirname "${BASH_SOURCE[0]}")"
 function pr_body() {
   local branch_name=$1
   local pr_template=$2
-  local result
+
+  if [ -z "$pr_template" ]; then
+    echo "PR_TEMPLATE is empty; therefore not a valid path."
+    return
+  fi
+
+  if [ ! -f "$pr_template" ]; then
+    echo "$pr_template is not a valid template path."
+    return
+  fi
 
   local ticket_key
   ticket_key=$(pr_ticket::key "$branch_name")
-
   local ticket_number
   ticket_number=$(pr_ticket::number "$branch_name")
-
   local with_link=false
   if [[ -n "${PR_TICKET_LINK_PREFIX:-}" && -n "${ticket_number}" ]]; then
     with_link=true
@@ -32,6 +39,8 @@ function pr_body() {
     fi
     ticket_link="${PR_LINK_PREFIX_TEXT}${ticket_link}"
   fi
+
+  local result
   result=$(perl -pe 's/<!--\s*{{\s*(.*?)\s*}}\s*-->/{{ $1 }}/g' "$pr_template")
   result=$(echo "$result" | sed "s|{{[[:space:]]*TICKET_LINK[[:space:]]*}}|$ticket_link|g")
 
@@ -45,5 +54,5 @@ function pr_body() {
   # Trim leading and trailing whitespace from result
   result=$(echo "$result" | awk '{$1=$1};1')
 
-  echo "$result"
+  echo "${result:-Description is currently empty}"
 }
