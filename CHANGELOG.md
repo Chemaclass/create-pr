@@ -3,6 +3,7 @@
 ## Unreleased
 
 - Fix additional single quotes on PR_TITLE_TEMPLATE
+- Improve feedback when given wrong PR template
 
 ## 0.5 - 2024-09-09
 

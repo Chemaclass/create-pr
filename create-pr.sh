@@ -54,6 +54,8 @@ export PR_TITLE
 export PR_BODY
 
 if [[ -n "${DEBUG:-}" && "$DEBUG" == true ]]; then
+  dump "BRANCH_NAME: $BRANCH_NAME"
+  dump "PR_TEMPLATE: $PR_TEMPLATE"
   dump "PR_LABEL: $PR_LABEL"
   dump "PR_TITLE: $PR_TITLE"
   dump "PR_BODY: $PR_BODY"

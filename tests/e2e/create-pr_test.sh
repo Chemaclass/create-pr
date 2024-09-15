@@ -1,6 +1,7 @@
 #!/bin/bash
 
 function set_up() {
+  export APP_CREATE_PR_ROOT_DIR=.
   export BASE_BRANCH="main"
   export BRANCH_NAME="feat/ticket-123-my_branch-name"
   export PR_TEMPLATE_PATH=".github/PULL_REQUEST_TEMPLATE.md"
@@ -24,6 +25,5 @@ function test_debug_success() {
   spy git
   spy gh
   export DEBUG=true
-
   assert_match_snapshot "$($SCRIPT)"
 }

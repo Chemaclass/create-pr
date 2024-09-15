@@ -59,7 +59,15 @@ function test_pr_body_link_without_pr_template() {
 
   local actual=$(pr_body "TICKET-123-my_branch" "")
 
-  assert_same "" "$actual"
+  assert_same "PR_TEMPLATE is empty; therefore not a valid path." "$actual"
+}
+
+function test_pr_body_link_without_valid_pr_template_path() {
+  export PR_TICKET_LINK_PREFIX=https://your-ticket-system.com/
+
+  local actual=$(pr_body "TICKET-123-my_branch" "/non-existing-path")
+
+  assert_same "/non-existing-path is not a valid template path." "$actual"
 }
 
 function test_pr_body_link_with_branch_with_numbers_no_prefix() {
