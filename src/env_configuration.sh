@@ -5,8 +5,8 @@ set -o allexport
 [[ -f ".env" ]] && source .env set
 set +o allexport
 
-APP_CREATE_PR_ROOT_DIR=$(git rev-parse --show-toplevel) || error_and_exit "This directory is not a git repository"
-
+APP_CREATE_PR_ROOT_DIR=${APP_CREATE_PR_ROOT_DIR:-$(git rev-parse --show-toplevel)} \
+  || error_and_exit "This directory is not a git repository"
 PR_LINK_PREFIX_TEXT=${PR_LINK_PREFIX_TEXT:-""}
 PR_TICKET_LINK_PREFIX=${PR_TICKET_LINK_PREFIX:-""}
 PR_TEMPLATE_PATH=${PR_TEMPLATE_PATH:-".github/PULL_REQUEST_TEMPLATE.md"}
@@ -15,7 +15,8 @@ PR_TEMPLATE="$APP_CREATE_PR_ROOT_DIR/$PR_TEMPLATE_PATH"
 PR_TITLE_TEMPLATE=${PR_TITLE_TEMPLATE:-"{{TICKET_KEY}}-{{TICKET_NUMBER}} {{PR_TITLE}}"}
 PR_ASSIGNEE=${PR_ASSIGNEE:-${ASSIGNEE:-"@me"}}
 BASE_BRANCH=${BASE_BRANCH:-"main"}
-BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD 2>/dev/null) || error_and_exit "Failed to get the current branch name."
+BRANCH_NAME=${BRANCH_NAME:-$(git rev-parse --abbrev-ref HEAD 2>/dev/null)} \
+  || error_and_exit "Failed to get the current branch name."
 
 export PR_TITLE_TEMPLATE
 export PR_TEMPLATE

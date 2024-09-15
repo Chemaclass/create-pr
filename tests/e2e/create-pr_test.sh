@@ -1,6 +1,8 @@
 #!/bin/bash
 
 function set_up() {
+  export BASE_BRANCH="main"
+  export BRANCH_NAME="feat/ticket-123-my_branch-name"
   export PR_TEMPLATE_PATH=".github/PULL_REQUEST_TEMPLATE.md"
   export PR_TICKET_LINK_PREFIX="https://github.com/Chemaclass/create-pr.sh/issues/"
   export PR_LINK_PREFIX_TEXT="Closes: "
@@ -13,6 +15,15 @@ function set_up() {
 function test_success() {
   spy git
   spy gh
+  export DEBUG=false
+
+  assert_match_snapshot "$($SCRIPT)"
+}
+
+function test_debug_success() {
+  spy git
+  spy gh
+  export DEBUG=true
 
   assert_match_snapshot "$($SCRIPT)"
 }

@@ -1,0 +1,4 @@
+[[33mDUMP[0m] [32m./create-pr.sh:57: [0mPR_LABEL: enhancement
+[[33mDUMP[0m] [32m./create-pr.sh:58: [0mPR_TITLE: TICKET-123 My branch name
+[[33mDUMP[0m] [32m./create-pr.sh:59: [0mPR_BODY: 
+Pull request created successfully.
