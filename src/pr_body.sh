@@ -25,7 +25,7 @@ function pr_body() {
   local ticket_number
   ticket_number=$(pr_ticket::number "$branch_name")
   local with_link=false
-  if [[ -n "${PR_TICKET_LINK_PREFIX}" && -n "${ticket_number}" ]]; then
+  if [[ -n "${PR_TICKET_LINK_PREFIX:-}" && -n "${ticket_number}" ]]; then
     with_link=true
   fi
 

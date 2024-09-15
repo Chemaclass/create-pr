@@ -54,6 +54,8 @@ export PR_TITLE
 export PR_BODY
 
 if [[ -n "${DEBUG:-}" && "$DEBUG" == true ]]; then
+  dump "REMOTE_URL: $REMOTE_URL"
+  dump "PR_USING_CLIENT: $PR_USING_CLIENT"
   dump "BRANCH_NAME: $BRANCH_NAME"
   dump "PR_TEMPLATE: $PR_TEMPLATE"
   dump "PR_LABEL: $PR_LABEL"
@@ -63,4 +65,4 @@ else
   main::create_pr
 fi
 
-echo "Pull request created successfully."
+echo "Script finished successfully."
