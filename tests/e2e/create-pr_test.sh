@@ -1,7 +1,7 @@
 #!/bin/bash
 
 function set_up() {
-  export PR_USING_CLIENT="github"
+  export REMOTE_URL="git@github.com:Chemaclass/create-pr.sh.git"
   export APP_CREATE_PR_ROOT_DIR=.
   export BASE_BRANCH="main"
   export BRANCH_NAME="feat/ticket-123-my_branch-name"
