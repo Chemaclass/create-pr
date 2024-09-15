@@ -3,7 +3,12 @@
 A bash script that helps create your PRs.
 It normalised the PR title, description, assignee by default and initial label based on your branch name.
 
-> It requires https://cli.github.com/ (currently only supports GitHub)
+### Current support
+
+- **GitHub** requires https://cli.github.com/
+- **GitLab** requires https://docs.gitlab.com/ee/editor_extensions/gitlab_cli/
+
+> These are needed to access your client via the terminal, and it is independent from this script.
 
 ## Installation
 
