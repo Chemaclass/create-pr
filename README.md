@@ -8,7 +8,7 @@ It normalised the PR title, description, assignee by default and initial label b
 - **GitHub** requires https://cli.github.com/
 - **GitLab** requires https://docs.gitlab.com/ee/editor_extensions/gitlab_cli/
 
-> These are needed to access your client via the terminal, and it is independent from this script.
+> These are needed to access your client via the terminal, and they are independent of this script.
 
 ## Installation
 
@@ -115,6 +115,9 @@ PR_LABEL_MAPPING="docs:documentation; fix|bug|bugfix|hotfix:bug; default:enhance
 Any additional argument will be passed to `gh` or `glab` tool.
 
 > Eg: `create-pr --draft` will create a draft PR.
+
+* GitHub: https://cli.github.com/manual/gh_pr_create
+* GitLab: https://gitlab.com/gitlab-org/cli/-/tree/main/docs/source/mr
 
 ## HINTS
 

@@ -10,24 +10,28 @@ function console_header::print_help() {
 create-pr [arguments] [options]
 
 Arguments:
-  None
+  * GitHub: https://cli.github.com/manual/gh_pr_create
+  * GitLab: https://gitlab.com/gitlab-org/cli/-/tree/main/docs/source/mr
 
 Options:
   --debug
-    Print all executed shell commands to the terminal.
+    Print all executed shell commands to the terminal
+
+  --dry-run
+    Display the used data without creating the PR
 
   -e|--env <file-path>
-    Load a custom env file overriding the .env environment variables.
+    Load a custom env file overriding the .env environment variables
 
   -t|--title <PR title> <branch prefix>
-    Generate a branch name based on the PR title.
-    <branch prefix> "feat" by default.
+    Generate a branch name based on the PR title
+    <branch prefix> "feat" by default
 
-  --version
-    Displays the current version.
+  -v|--version
+    Displays the current version
 
-  --help
-    This message.
+  -h|--help
+    This message
 
 See source code: https://github.com/Chemaclass/create-pr
 EOF

@@ -35,16 +35,16 @@ while [[ $# -gt 0 ]]; do
       source "$2"
       shift
       ;;
-    -v|--version)
-      console_header::print_version
-      trap '' EXIT && exit 0
-      ;;
     -t|--title)
       helpers::generate_branch_name "$2" "${3:-}"
       trap '' EXIT && exit 0
       ;;
-    --help)
+    -h|--help)
       console_header::print_help
+      trap '' EXIT && exit 0
+      ;;
+    -v|--version)
+      console_header::print_version
       trap '' EXIT && exit 0
       ;;
     *)
