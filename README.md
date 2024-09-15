@@ -3,12 +3,27 @@
 A bash script that helps create your PRs.
 It normalised the PR title, description, assignee by default and initial label based on your branch name.
 
-### Current support
+## Current support
 
 - **GitHub** requires https://cli.github.com/
 - **GitLab** requires https://docs.gitlab.com/ee/editor_extensions/gitlab_cli/
 
 > These are needed to access your client via the terminal, and they are independent of this script.
+
+### Extra arguments
+
+Any additional argument will be passed to `gh` or `glab` tool.
+
+```bash
+# Create a draft PR
+./create-pr --draft
+
+# Create a draft PR with an overridden title
+./create-pr --draft --title="Custom Title"
+```
+
+* GitHub: https://cli.github.com/manual/gh_pr_create
+* GitLab: https://gitlab.com/gitlab-org/cli/-/blob/main/docs/source/mr/create.md
 
 ## Installation
 
@@ -109,15 +124,6 @@ PR_LABEL_MAPPING="docs:documentation; fix|bug|bugfix|hotfix:bug; default:enhance
 ### BASE_BRANCH
 
 - `BASE_BRANCH` or `main` by default
-
-## Extra arguments
-
-Any additional argument will be passed to `gh` or `glab` tool.
-
-> Eg: `create-pr --draft` will create a draft PR.
-
-* GitHub: https://cli.github.com/manual/gh_pr_create
-* GitLab: https://gitlab.com/gitlab-org/cli/-/tree/main/docs/source/mr
 
 ## HINTS
 
