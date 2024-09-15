@@ -21,9 +21,9 @@ function test_success() {
   assert_match_snapshot "$($SCRIPT)"
 }
 
-function test_script_with_debug() {
+function test_script_with_dry_run() {
   spy git
   spy gh
 
-  assert_match_snapshot "$($SCRIPT --debug)"
+  assert_match_snapshot "$($SCRIPT --dry-run)"
 }

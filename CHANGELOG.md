@@ -5,8 +5,7 @@
 - Fix additional single quotes on PR_TITLE_TEMPLATE
 - Improve feedback when given wrong PR template
 - Add GitLab support
-- Add `--debug` option (alias: `--dry-run`)
-  - Display the data used before creating the PR
+- Add `--dry-run` to display the used data before creating the PR
 - Rename build executable script to `create-pr`
 
 ## [0.5](https://github.com/Chemaclass/create-pr/compare/0.15.0...0.16.0) - 2024-09-09

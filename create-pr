@@ -18,13 +18,16 @@ source "$CREATE_PR_ROOT_DIR/src/env_configuration.sh"
 source "$CREATE_PR_ROOT_DIR/src/console_header.sh"
 source "$CREATE_PR_ROOT_DIR/src/main.sh"
 
-DEBUG=${DEBUG:-false}
+DRY_RUN=${DRY_RUN:-false}
 
 while [[ $# -gt 0 ]]; do
   argument="$1"
   case $argument in
-    --debug|--dry-run)
-      DEBUG=true
+    --debug)
+      set -x
+      ;;
+    --dry-run)
+      DRY_RUN=true
       ;;
     -e|--env)
       # shellcheck disable=SC1090
@@ -51,14 +54,14 @@ PR_LABEL=${PR_LABEL:-${LABEL:-$(pr_label "$BRANCH_NAME" "${PR_LABEL_MAPPING:-}")
 PR_TITLE=$(pr_title "$BRANCH_NAME")
 PR_BODY=$(pr_body "$BRANCH_NAME" "$PR_TEMPLATE")
 
-if [[ "$DEBUG" == true ]]; then
-  dump "REMOTE_URL: $REMOTE_URL"
-  dump "BRANCH_NAME: $BRANCH_NAME"
-  dump "PR_USING_CLIENT: $PR_USING_CLIENT"
-  dump "PR_TEMPLATE: $PR_TEMPLATE"
-  dump "PR_LABEL: $PR_LABEL"
-  dump "PR_TITLE: $PR_TITLE"
-  dump "PR_BODY: $PR_BODY"
+if [[ "$DRY_RUN" == true ]]; then
+  printf "REMOTE_URL: %s\n" "$REMOTE_URL"
+  printf "BRANCH_NAME: %s\n" "$BRANCH_NAME"
+  printf "PR_USING_CLIENT: %s\n" "$PR_USING_CLIENT"
+  printf "PR_TEMPLATE: %s\n" "$PR_TEMPLATE"
+  printf "PR_LABEL: %s\n" "$PR_LABEL"
+  printf "PR_TITLE: %s\n" "$PR_TITLE"
+  printf "PR_BODY:\n%s\n" "$PR_BODY"
   exit 0
 fi
 
