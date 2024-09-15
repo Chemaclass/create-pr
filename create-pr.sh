@@ -18,12 +18,12 @@ source "$CREATE_PR_ROOT_DIR/src/env_configuration.sh"
 source "$CREATE_PR_ROOT_DIR/src/console_header.sh"
 source "$CREATE_PR_ROOT_DIR/src/main.sh"
 
-DEBUG=false
+DEBUG=${DEBUG:-false}
 
 while [[ $# -gt 0 ]]; do
   argument="$1"
   case $argument in
-    --debug)
+    --debug|--dry-run)
       DEBUG=true
       ;;
     -e|--env)

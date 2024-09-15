@@ -5,6 +5,8 @@
 - Fix additional single quotes on PR_TITLE_TEMPLATE
 - Improve feedback when given wrong PR template
 - Add GitLab support
+- Add `--debug` option (alias: `--dry-run`)
+  - Display the data used before creating the PR
 
 ## 0.5 - 2024-09-09
 
