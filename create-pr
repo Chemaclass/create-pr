@@ -19,6 +19,7 @@ source "$CREATE_PR_ROOT_DIR/src/console_header.sh"
 source "$CREATE_PR_ROOT_DIR/src/main.sh"
 
 DRY_RUN=${DRY_RUN:-false}
+EXTRA_ARGS=()
 
 while [[ $# -gt 0 ]]; do
   argument="$1"
@@ -46,6 +47,8 @@ while [[ $# -gt 0 ]]; do
       console_header::print_help
       trap '' EXIT && exit 0
       ;;
+    *)
+      EXTRA_ARGS+=("$argument")
   esac
   shift
 done
@@ -55,6 +58,11 @@ PR_TITLE=$(pr_title "$BRANCH_NAME")
 PR_BODY=$(pr_body "$BRANCH_NAME" "$PR_TEMPLATE")
 
 if [[ "$DRY_RUN" == true ]]; then
+  if [ ${#EXTRA_ARGS[@]} -gt 0 ]; then
+    printf "EXTRA_ARGS: %s\n" "${EXTRA_ARGS[@]}"
+  else
+    printf "EXTRA_ARGS: empty\n"
+  fi
   printf "REMOTE_URL: %s\n" "$REMOTE_URL"
   printf "BRANCH_NAME: %s\n" "$BRANCH_NAME"
   printf "PR_USING_CLIENT: %s\n" "$PR_USING_CLIENT"

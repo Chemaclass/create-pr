@@ -110,6 +110,12 @@ PR_LABEL_MAPPING="docs:documentation; fix|bug|bugfix|hotfix:bug; default:enhance
 
 - `BASE_BRANCH` or `main` by default
 
+## Extra arguments
+
+Any additional argument will be passed to `gh` or `glab` tool.
+
+> Eg: `create-pr --draft` will create a draft PR.
+
 ## HINTS
 
 - Add to your composer, npm or similar a script pointing to the `create-pr`

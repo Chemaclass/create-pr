@@ -27,3 +27,10 @@ function test_script_with_dry_run() {
 
   assert_match_snapshot "$($SCRIPT --dry-run)"
 }
+
+function test_script_with_dry_run_and_extra_args() {
+  spy git
+  spy gh
+
+  assert_match_snapshot "$($SCRIPT --dry-run --draft "--title \"Pull request title\"")"
+}
