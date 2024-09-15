@@ -38,7 +38,7 @@ Please make sure you have [set up your username and email address](https://git-s
 
 ## Development
 
-- Entry point `create-pr.sh`
+- Entry point `create-pr`
 - Isolated testable functions inside files under the `src` directory
 
 ### Build

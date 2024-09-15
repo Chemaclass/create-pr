@@ -7,7 +7,7 @@ function console_header::print_version() {
 
 function console_header::print_help() {
     cat <<EOF
-create-pr.sh [arguments] [options]
+create-pr [arguments] [options]
 
 Arguments:
   None
@@ -29,6 +29,6 @@ Options:
   --help
     This message.
 
-See source code: https://github.com/Chemaclass/create-pr.sh
+See source code: https://github.com/Chemaclass/create-pr
 EOF
 }
