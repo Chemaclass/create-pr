@@ -13,6 +13,10 @@ function set_up() {
   SCRIPT="$CREATE_PR_ROOT_DIR/create-pr.sh"
 }
 
+function tear_down_after_script() {
+  export DEBUG=false
+}
+
 function test_success() {
   spy git
   spy gh
@@ -25,5 +29,6 @@ function test_debug_success() {
   spy git
   spy gh
   export DEBUG=true
+
   assert_match_snapshot "$($SCRIPT)"
 }
