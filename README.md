@@ -1,7 +1,7 @@
 # create-pr
 
 A bash script that helps create your PRs.
-It normalised the PR title, description, assignee by default and initial label based on your branch name.
+It normalizes the PR title, description, assignee by default, and initial label based on your branch name.
 
 ## Current support
 
@@ -27,9 +27,10 @@ Any additional argument will be passed to `gh` or `glab` tool.
 
 ## Installation
 
-Download the latest `single executable script` on the [Releases page](https://github.com/Chemaclass/bash-create-pr/releases), or build it yourself.
+You can download the latest `single executable script` on the [Releases page](https://github.com/Chemaclass/bash-create-pr/releases) or build it yourself.
 
-In case you download the executable file from releases' GitHub project, you can check the file's checksum to validate that it was not altered. The checksum for each release is on each release on GitHub.
+If you download the executable file from a release's GitHub project, you can check the file's checksum to validate that
+it was not altered. The checksum for each release is on each release on GitHub.
 
 To build the project yourself, execute the script `./build.sh` and move the resulting `bin/create-pr` script wherever you want.
 
