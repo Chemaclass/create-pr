@@ -1,4 +1,4 @@
-# create-pr.sh
+# create-pr
 
 A bash script that helps create your PRs.
 It normalised the PR title, description, assignee by default and initial label based on your branch name.
@@ -16,7 +16,7 @@ Download the latest `single executable script` on the [Releases page](https://gi
 
 In case you download the executable file from releases' GitHub project, you can check the file's checksum to validate that it was not altered. The checksum for each release is on each release on GitHub.
 
-To build the project yourself, execute the script `./build.sh` and move the resulting `bin/create-pr.sh` script wherever you want.
+To build the project yourself, execute the script `./build.sh` and move the resulting `bin/create-pr` script wherever you want.
 
 ## How to use it?
 
@@ -51,11 +51,11 @@ Text to display if the link does not contain a `TICKET_KEY`.
 Branch name: `feat/27-my-branch-name`
 
 ```bash
-PR_TICKET_LINK_PREFIX="https://github.com/Chemaclass/create-pr.sh/issues/"
+PR_TICKET_LINK_PREFIX="https://github.com/Chemaclass/create-pr/issues/"
 PR_LINK_PREFIX_TEXT="Closes: "
 ```
 
-- Result: `Closes: https://github.com/Chemaclass/create-pr.sh/issues/27`
+- Result: `Closes: https://github.com/Chemaclass/create-pr/issues/27`
 
 ### PR_TITLE_TEMPLATE
 
@@ -112,7 +112,7 @@ PR_LABEL_MAPPING="docs:documentation; fix|bug|bugfix|hotfix:bug; default:enhance
 
 ## HINTS
 
-- Add to your composer, npm or similar a script pointing to the `create-pr.sh`
+- Add to your composer, npm or similar a script pointing to the `create-pr`
 - You can use the [PULL_REQUEST_TEMPLATE](./.github/PULL_REQUEST_TEMPLATE.md) from this project as example
 
 ## Contribute
