@@ -1,8 +1,8 @@
 # Changelog
 
-## [0.6](https://github.com/Chemaclass/create-pr/compare/0.5...0.6) - 2024-09-15
+## [0.6](https://github.com/Chemaclass/create-pr/compare/0.5...0.6) - 2024-09-16
 
-- Fix additional single quotes on PR_TITLE_TEMPLATE
+- Fix additional single quotes on `PR_TITLE_TEMPLATE`
 - Improve feedback when given wrong PR template
 - Add GitLab support
 - Add `--dry-run` to display the used data before creating the PR
