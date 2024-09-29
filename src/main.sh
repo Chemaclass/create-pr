@@ -4,6 +4,7 @@ set -euo pipefail
 function main::create_pr() {
   validate_base_branch_exists
   validate_the_branch_has_commits
+  validate_the_current_branch_is_not_target
 
   # Push the current branch
   if ! git push -u origin "$BRANCH_NAME"; then
