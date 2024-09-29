@@ -2,12 +2,12 @@
 set -euo pipefail
 
 function main::create_pr() {
-  validate::base_branch_exists
+  validate::target_branch_exists
   validate::branch_has_commits
   validate::current_branch_is_not_target
 
   # Push the current branch
-  if ! git push -u origin "$BRANCH_NAME"; then
+  if ! git push -u origin "$CURRENT_BRANCH"; then
       error_and_exit "Failed to push the current branch to the remote repository."\
         "Please check your git remote settings."
   fi
@@ -25,8 +25,8 @@ function main::create_pr_gitlab() {
   local glab_command=(
     glab mr create
       --title "$PR_TITLE"
-      --target-branch "$BASE_BRANCH"
-      --source-branch "$BRANCH_NAME"
+      --target-branch "$TARGET_BRANCH"
+      --source-branch "$CURRENT_BRANCH"
       --assignee "$PR_ASSIGNEE"
       --label "$PR_LABEL"
       --description "$PR_BODY"
@@ -48,8 +48,8 @@ function main::create_pr_github() {
   local gh_command=(
     gh pr create
       --title "$PR_TITLE"
-      --base "$BASE_BRANCH"
-      --head "$BRANCH_NAME"
+      --base "$TARGET_BRANCH"
+      --head "$CURRENT_BRANCH"
       --assignee "$PR_ASSIGNEE"
       --label "$PR_LABEL"
       --body "$PR_BODY"

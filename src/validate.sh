@@ -9,21 +9,21 @@ function error_and_exit() {
     exit 1
 }
 
-function validate::base_branch_exists() {
-  if ! git show-ref --verify --quiet "refs/heads/$BRANCH_NAME"; then
-    error_and_exit "Base branch '$BRANCH_NAME' does not exist. Please check the base branch name or create it."
+function validate::target_branch_exists() {
+  if ! git show-ref --verify --quiet "refs/heads/$CURRENT_BRANCH"; then
+    error_and_exit "Base branch '$CURRENT_BRANCH' does not exist. Please check the base branch name or create it."
   fi
 }
 
 function validate::branch_has_commits() {
-  if [ "$(git rev-list --count "$BRANCH_NAME")" -eq 0 ]; then
+  if [ "$(git rev-list --count "$CURRENT_BRANCH")" -eq 0 ]; then
     error_and_exit "The current branch has no commits. Make sure the branch is not empty."
   fi
 }
 
 function validate::current_branch_is_not_target() {
-  if [ "$BRANCH_NAME" = "$BASE_BRANCH" ]; then
-    error_and_exit "You are on the same branch as target -> $BRANCH_NAME"
+  if [ "$CURRENT_BRANCH" = "$TARGET_BRANCH" ]; then
+    error_and_exit "You are on the same branch as target -> $CURRENT_BRANCH"
   fi
 }
 
