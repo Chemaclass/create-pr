@@ -31,6 +31,7 @@ function test_script_with_dry_run() {
 function test_script_with_dry_run_and_extra_args() {
   spy git
   spy gh
+  export TARGET_BRANCH=prod
 
   assert_match_snapshot "$($SCRIPT --dry-run --draft "--title \"Pull request title\"")"
 }

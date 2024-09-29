@@ -64,6 +64,7 @@ if [[ "$DRY_RUN" == true ]]; then
     printf "EXTRA_ARGS: empty\n"
   fi
   printf "REMOTE_URL: %s\n" "$REMOTE_URL"
+  printf "TARGET_BRANCH: %s\n" "$TARGET_BRANCH"
   printf "CURRENT_BRANCH: %s\n" "$CURRENT_BRANCH"
   printf "PR_USING_CLIENT: %s\n" "$PR_USING_CLIENT"
   printf "PR_TEMPLATE: %s\n" "$PR_TEMPLATE"
