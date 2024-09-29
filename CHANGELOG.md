@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.7](https://github.com/Chemaclass/create-pr/compare/0.6...0.7) - 2024-09-29
+
+- Validate current branch is not target branch
+- Internal refactorings and minor improvements
+
 ## [0.6](https://github.com/Chemaclass/create-pr/compare/0.5...0.6) - 2024-09-16
 
 - Fix additional single quotes on `PR_TITLE_TEMPLATE`
