@@ -2,9 +2,9 @@
 set -euo pipefail
 
 function main::create_pr() {
-  validate_base_branch_exists
-  validate_the_branch_has_commits
-  validate_the_current_branch_is_not_target
+  validate::base_branch_exists
+  validate::branch_has_commits
+  validate::current_branch_is_not_target
 
   # Push the current branch
   if ! git push -u origin "$BRANCH_NAME"; then
@@ -20,7 +20,7 @@ function main::create_pr() {
 }
 
 function main::create_pr_gitlab() {
-  validate_glab_cli_is_installed
+  validate::glab_cli_is_installed
 
   local glab_command=(
     glab mr create
@@ -43,7 +43,7 @@ function main::create_pr_gitlab() {
 }
 
 function main::create_pr_github() {
-  validate_gh_cli_is_installed
+  validate::gh_cli_is_installed
 
   local gh_command=(
     gh pr create

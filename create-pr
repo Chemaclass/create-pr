@@ -9,7 +9,7 @@ export CREATE_PR_ROOT_DIR
 
 source "$CREATE_PR_ROOT_DIR/src/debug.sh"
 source "$CREATE_PR_ROOT_DIR/src/helpers.sh"
-source "$CREATE_PR_ROOT_DIR/src/validation.sh"
+source "$CREATE_PR_ROOT_DIR/src/validate.sh"
 source "$CREATE_PR_ROOT_DIR/src/pr_ticket.sh"
 source "$CREATE_PR_ROOT_DIR/src/pr_body.sh"
 source "$CREATE_PR_ROOT_DIR/src/pr_label.sh"
