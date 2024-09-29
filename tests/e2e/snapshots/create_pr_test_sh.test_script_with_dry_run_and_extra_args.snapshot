@@ -1,7 +1,8 @@
 EXTRA_ARGS: --draft
 EXTRA_ARGS: --title "Pull request title"
 REMOTE_URL: git@github.com:Chemaclass/create-pr.git
-BRANCH_NAME: feat/ticket-123-my_branch-name
+TARGET_BRANCH: prod
+CURRENT_BRANCH: feat/ticket-123-my_branch-name
 PR_USING_CLIENT: github
 PR_TEMPLATE: ./.github/PULL_REQUEST_TEMPLATE.md
 PR_LABEL: enhancement

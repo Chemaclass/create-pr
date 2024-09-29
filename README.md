@@ -122,9 +122,9 @@ PR_LABEL_MAPPING="docs:documentation; fix|bug|bugfix|hotfix:bug; default:enhance
 
 - `PR_ASSIGNEE` or `@me` by default
 
-### BASE_BRANCH
+### TARGET_BRANCH
 
-- `BASE_BRANCH` or `main` by default
+- `TARGET_BRANCH` or `main` by default
 
 ## HINTS
 
