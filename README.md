@@ -5,8 +5,8 @@ It normalizes the PR title, description, assignee by default, and initial label 
 
 ## Current support
 
-- **GitHub** requires https://cli.github.com/
-- **GitLab** requires https://docs.gitlab.com/ee/editor_extensions/gitlab_cli/
+- **GitHub** requires https://cli.github.com/manual/gh_pr_create
+- **GitLab** requires https://gitlab.com/gitlab-org/cli/-/blob/main/docs/source/mr/create.md
 
 > These are needed to access your client via the terminal, and they are independent of this script.
 
@@ -121,6 +121,12 @@ PR_LABEL_MAPPING="docs:documentation; fix|bug|bugfix|hotfix:bug; default:enhance
 > Alias: ASSIGNEE
 
 - `PR_ASSIGNEE` or `@me` by default
+
+### PR_REVIEWER
+
+> Alias: REVIEWER
+
+- Empty by default
 
 ### TARGET_BRANCH
 

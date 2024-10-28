@@ -4,6 +4,7 @@
 
 - Add `PR_TITLE_REMOVE_PREFIX`
 - Use ticket number only at the beginning of branch name
+- Allow adding reviewers via local .env
 
 ## [0.7](https://github.com/Chemaclass/create-pr/compare/0.6...0.7) - 2024-09-29
 
