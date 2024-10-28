@@ -1,10 +1,10 @@
 # Changelog
 
-## Unreleased
+## [0.8](https://github.com/Chemaclass/create-pr/compare/0.7...0.8) - 2024-10-28
 
-- Add `PR_TITLE_REMOVE_PREFIX`
 - Use ticket number only at the beginning of branch name
-- Allow adding reviewers via local .env
+- Add `PR_TITLE_REMOVE_PREFIX`: Remove custom prefix text from the generated title
+- Add `PR_REVIEWER`: Allow adding reviewers via local .env
 
 ## [0.7](https://github.com/Chemaclass/create-pr/compare/0.6...0.7) - 2024-09-29
 
