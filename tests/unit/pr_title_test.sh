@@ -1,4 +1,5 @@
 #!/bin/bash
+# shellcheck disable=SC2034
 
 function set_up() {
   export PR_TITLE_TEMPLATE="{{TICKET_KEY}}-{{TICKET_NUMBER}} {{PR_TITLE}}"
@@ -6,10 +7,22 @@ function set_up() {
   source "$CREATE_PR_ROOT_DIR/src/pr_title.sh"
 }
 
-function test_pr_title_remove_be_fe_prefix() {
-  actual=$(pr_title "feat/TICKET-0000-be-my-new-4th-feature")
+# data_provider provider_remove_custom_title_prefix
+function test_pr_title_remove_custom_prefix() {
+  local custom_prefix="$1"
+  export PR_TITLE_REMOVE_PREFIX="$custom_prefix"
+
+  actual=$(pr_title "feat/TICKET-0000-${custom_prefix}-my-new-4th-feature")
 
   assert_same "TICKET-0000 My new 4th feature" "$actual"
+}
+
+function provider_remove_custom_title_prefix() {
+  echo "be"
+  echo "BE"
+  echo "fe"
+  echo "Fe"
+#  echo "fe,be" # todo: allow multiple prefix comma separated
 }
 
 function test_pr_title_no_template() {

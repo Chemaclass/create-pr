@@ -32,12 +32,17 @@ function pr_title() {
   formatted="${normalized_template//\{\{TICKET_KEY\}\}/$ticket_key}"
   formatted="${formatted//\{\{TICKET_NUMBER\}\}/$ticket_number}"
 
-  PR_TITLE_REMOVE_PREFIX="be"
-  local new_title
-  new_title=$(echo "$title" | sed -e "s/^${PR_TITLE_REMOVE_PREFIX}//I")
-  new_title=$(echo "$new_title" | sed 's/^ *//')
-  new_title="$(echo "$new_title" | awk '{ print toupper(substr($0,1,1)) tolower(substr($0,2)) }')"
-  formatted="${formatted//\{\{PR_TITLE\}\}/$new_title}"
+  if [[ -n "$PR_TITLE_REMOVE_PREFIX" ]]; then
+    # Remove the prefix if PR_TITLE_REMOVE_PREFIX is set
+    local new_title
+    new_title=$(echo "$title" | sed -e "s/^${PR_TITLE_REMOVE_PREFIX}//I")
+    new_title=$(echo "$new_title" | sed 's/^ *//')
+    new_title="$(echo "$new_title" | awk '{ print toupper(substr($0,1,1)) tolower(substr($0,2)) }')"
+    formatted="${formatted//\{\{PR_TITLE\}\}/$new_title}"
+  else
+    # Use the original title if PR_TITLE_REMOVE_PREFIX is not set
+    formatted="${formatted//\{\{PR_TITLE\}\}/$title}"
+  fi
 
   echo "$formatted"
 }
