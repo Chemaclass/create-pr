@@ -1,7 +1,5 @@
 #!/bin/bash
 
-# source: https://github.com/Chemaclass/bash-dumper
-
 # Pass in any number of ANSI SGR codes.
 #
 # Code reference:

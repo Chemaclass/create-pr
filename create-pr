@@ -7,7 +7,7 @@ declare -r CREATE_PR_VERSION="0.7.0"
 CREATE_PR_ROOT_DIR="$(dirname "${BASH_SOURCE[0]}")"
 export CREATE_PR_ROOT_DIR
 
-source "$CREATE_PR_ROOT_DIR/src/debug.sh"
+source "$CREATE_PR_ROOT_DIR/src/dev/dumper.sh"
 source "$CREATE_PR_ROOT_DIR/src/helpers.sh"
 source "$CREATE_PR_ROOT_DIR/src/validate.sh"
 source "$CREATE_PR_ROOT_DIR/src/pr_ticket.sh"
