@@ -73,6 +73,12 @@ function test_pr_title_with_prefix_and_ticket_number() {
   assert_same "Add pr 3 create Script" "$actual"
 }
 
+function test_pr_title_ticket_number_only_at_the_beginning() {
+  actual=$(pr_title "prefix/add-pr-3-create_script")
+
+  assert_same "Add pr 3 create Script" "$actual"
+}
+
 function test_pr_title_with_prefix_and_ticket_key() {
   actual="$(pr_title "feat/TICKET-my-branch_name")"
 
