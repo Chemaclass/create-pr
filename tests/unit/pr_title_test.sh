@@ -9,20 +9,21 @@ function set_up() {
 
 # data_provider provider_remove_custom_title_prefix
 function test_pr_title_remove_custom_prefix() {
-  local custom_prefix="$1"
-  export PR_TITLE_REMOVE_PREFIX="$custom_prefix"
+  local remove_prefix="$1"
+  local branch_prefix="$2"
 
-  actual=$(pr_title "feat/TICKET-0000-${custom_prefix}-my-new-4th-feature")
+  export PR_TITLE_REMOVE_PREFIX="$remove_prefix"
+  actual=$(pr_title "feat/TICKET-0000-${branch_prefix}-my-new-4th-feature")
 
   assert_same "TICKET-0000 My new 4th feature" "$actual"
 }
 
 function provider_remove_custom_title_prefix() {
-  echo "be"
-  echo "BE"
-  echo "fe"
-  echo "Fe"
-#  echo "fe,be" # todo: allow multiple prefix comma separated
+  echo "be" "be"
+  echo "BE" "be"
+  echo "fe" "fe"
+  echo "Fe" "fe"
+  echo "fe,be" "be"
 }
 
 function test_pr_title_no_template() {
