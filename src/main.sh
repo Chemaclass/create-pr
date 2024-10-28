@@ -28,6 +28,7 @@ function main::create_pr_gitlab() {
       --target-branch "$TARGET_BRANCH"
       --source-branch "$CURRENT_BRANCH"
       --assignee "$PR_ASSIGNEE"
+      --reviewer "$PR_REVIEWER"
       --label "$PR_LABEL"
       --description "$PR_BODY"
   )
@@ -51,6 +52,7 @@ function main::create_pr_github() {
       --base "$TARGET_BRANCH"
       --head "$CURRENT_BRANCH"
       --assignee "$PR_ASSIGNEE"
+      --reviewer "$PR_REVIEWER"
       --label "$PR_LABEL"
       --body "$PR_BODY"
   )
