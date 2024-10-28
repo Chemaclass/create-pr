@@ -31,7 +31,13 @@ function pr_title() {
   local formatted
   formatted="${normalized_template//\{\{TICKET_KEY\}\}/$ticket_key}"
   formatted="${formatted//\{\{TICKET_NUMBER\}\}/$ticket_number}"
-  formatted="${formatted//\{\{PR_TITLE\}\}/$title}"
+
+  PR_TITLE_REMOVE_PREFIX="be"
+  local new_title
+  new_title=$(echo "$title" | sed -e "s/^${PR_TITLE_REMOVE_PREFIX}//I")
+  new_title=$(echo "$new_title" | sed 's/^ *//')
+  new_title="$(echo "$new_title" | awk '{ print toupper(substr($0,1,1)) tolower(substr($0,2)) }')"
+  formatted="${formatted//\{\{PR_TITLE\}\}/$new_title}"
 
   echo "$formatted"
 }
