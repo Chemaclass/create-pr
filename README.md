@@ -87,6 +87,25 @@ Enable custom PR title with placeholders:
 PR_TITLE_TEMPLATE="{{TICKET_KEY}}-{{TICKET_NUMBER}} {{PR_TITLE}}"
 ```
 
+### PR_TITLE_REMOVE_PREFIX
+
+Remove custom prefix text from the generated title.
+Useful when you have tickets prefixed with some text like `BE:` or `FE:`.
+
+#### Example
+
+By default, having a branch named: `feat/ticket-123-be-crete-feature-foo`
+
+Default behaviour:
+- `TICKET-123 Be create feature foo`
+
+With `PR_TITLE_REMOVE_PREFIX=be` the result will be:
+- `TICKET-123 Create feature foo`
+
+> This variable accept multiple strings to consider/remove comma separated.
+>
+> Eg: `PR_TITLE_REMOVE_PREFIX=be,fe`
+
 ### PR_LABEL
 
 > Alias: LABEL
