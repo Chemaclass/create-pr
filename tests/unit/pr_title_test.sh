@@ -23,6 +23,7 @@ function provider_remove_custom_title_prefix() {
   echo "BE" "be"
   echo "fe" "fe"
   echo "Fe" "fe"
+  echo "fe,be" "fe"
   echo "fe,be" "be"
 }
 
