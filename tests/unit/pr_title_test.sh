@@ -1,9 +1,30 @@
 #!/bin/bash
+# shellcheck disable=SC2034
 
 function set_up() {
   export PR_TITLE_TEMPLATE="{{TICKET_KEY}}-{{TICKET_NUMBER}} {{PR_TITLE}}"
 
   source "$CREATE_PR_ROOT_DIR/src/pr_title.sh"
+}
+
+# data_provider provider_remove_custom_title_prefix
+function test_pr_title_with_ticket_key_remove_custom_prefix() {
+  local remove_prefix="$1"
+  local branch_name="$2"
+
+  export PR_TITLE_REMOVE_PREFIX="$remove_prefix"
+  actual=$(pr_title "$branch_name")
+
+  assert_same "TICKET-0000 My new 4th feature" "$actual"
+}
+
+function provider_remove_custom_title_prefix() {
+  echo "be" "feat/TICKET-0000-be-my-new-4th-feature"
+  echo "BE" "feat/TICKET-0000-be-my-new-4th-feature"
+  echo "fe" "feat/TICKET-0000-fe-my-new-4th-feature"
+  echo "Fe" "feat/TICKET-0000-fe-my-new-4th-feature"
+  echo "fe,be" "feat/TICKET-0000-fe-my-new-4th-feature"
+  echo "fe,be" "feat/TICKET-0000-be-my-new-4th-feature"
 }
 
 function test_pr_title_no_template() {

@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Add `PR_TITLE_REMOVE_PREFIX`
+
 ## [0.7](https://github.com/Chemaclass/create-pr/compare/0.6...0.7) - 2024-09-29
 
 - Validate current branch is not target branch

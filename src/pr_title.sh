@@ -31,7 +31,25 @@ function pr_title() {
   local formatted
   formatted="${normalized_template//\{\{TICKET_KEY\}\}/$ticket_key}"
   formatted="${formatted//\{\{TICKET_NUMBER\}\}/$ticket_number}"
-  formatted="${formatted//\{\{PR_TITLE\}\}/$title}"
+
+  local new_title="$title"
+
+  if [[ -n "$PR_TITLE_REMOVE_PREFIX" ]]; then
+    # Split PR_TITLE_REMOVE_PREFIX into an array
+    IFS=',' read -ra prefixes <<< "$PR_TITLE_REMOVE_PREFIX"
+    # Loop through each prefix and remove it from the start if it matches
+    for prefix in "${prefixes[@]}"; do
+      # shellcheck disable=SC2001
+      new_title="$(echo "$new_title" | sed -e "s/^${prefix}//I")"
+    done
+
+    # Trim leading whitespace and capitalize the first letter
+    new_title=$(echo "$new_title" \
+      | sed 's/^ *//' \
+      | awk '{ print toupper(substr($0,1,1)) tolower(substr($0,2)) }')
+  fi
+
+  formatted="${formatted//\{\{PR_TITLE\}\}/$new_title}"
 
   echo "$formatted"
 }
