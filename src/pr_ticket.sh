@@ -4,7 +4,20 @@ set -o allexport
 # $1 = branch_name
 function pr_ticket::number() {
   branch_name=$1
-  echo "$branch_name" | grep -oE "[0-9]+" | head -n 1
+
+  # Remove optional prefix and split the branch name by hyphens
+  stripped_branch=${branch_name#*/}
+  # shellcheck disable=SC2206
+  parts=(${stripped_branch//-/ })
+
+  # Check if the first or second part contains a number and print it; otherwise, print an empty string
+  if [[ ${parts[0]} =~ ^[0-9]+$ ]]; then
+    echo "${parts[0]}"
+  elif [[ ${parts[1]} =~ ^[0-9]+$ ]]; then
+    echo "${parts[1]}"
+  else
+    echo ""
+  fi
 }
 
 # $1 = branch_name
