@@ -8,23 +8,23 @@ function set_up() {
 }
 
 # data_provider provider_remove_custom_title_prefix
-function test_pr_title_remove_custom_prefix() {
+function test_pr_title_with_ticket_key_remove_custom_prefix() {
   local remove_prefix="$1"
-  local branch_prefix="$2"
+  local branch_name="$2"
 
   export PR_TITLE_REMOVE_PREFIX="$remove_prefix"
-  actual=$(pr_title "feat/TICKET-0000-${branch_prefix}-my-new-4th-feature")
+  actual=$(pr_title "$branch_name")
 
   assert_same "TICKET-0000 My new 4th feature" "$actual"
 }
 
 function provider_remove_custom_title_prefix() {
-  echo "be" "be"
-  echo "BE" "be"
-  echo "fe" "fe"
-  echo "Fe" "fe"
-  echo "fe,be" "fe"
-  echo "fe,be" "be"
+  echo "be" "feat/TICKET-0000-be-my-new-4th-feature"
+  echo "BE" "feat/TICKET-0000-be-my-new-4th-feature"
+  echo "fe" "feat/TICKET-0000-fe-my-new-4th-feature"
+  echo "Fe" "feat/TICKET-0000-fe-my-new-4th-feature"
+  echo "fe,be" "feat/TICKET-0000-fe-my-new-4th-feature"
+  echo "fe,be" "feat/TICKET-0000-be-my-new-4th-feature"
 }
 
 function test_pr_title_no_template() {
