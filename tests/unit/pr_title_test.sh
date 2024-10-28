@@ -6,6 +6,12 @@ function set_up() {
   source "$CREATE_PR_ROOT_DIR/src/pr_title.sh"
 }
 
+function test_pr_title_remove_be_fe_prefix() {
+  actual=$(pr_title "feat/TICKET-0000-be-my-new-4th-feature")
+
+  assert_same "TICKET-0000 My new 4th feature" "$actual"
+}
+
 function test_pr_title_no_template() {
   export PR_TITLE_TEMPLATE=
   actual=$(pr_title "feat/TICKET-0000-my-new-1st-feature")
