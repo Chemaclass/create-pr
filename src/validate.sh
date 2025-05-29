@@ -11,7 +11,7 @@ function error_and_exit() {
 
 function validate::target_branch_exists() {
   if ! git show-ref --verify --quiet "refs/heads/$TARGET_BRANCH"; then
-    error_and_exit "Base branch '$TARGET_BRANCH' does not exist. Please check the base branch name or create it."
+    error_and_exit "Base branch '$TARGET_BRANCH' does not exist. Check the base branch name or create it."
   fi
 }
 

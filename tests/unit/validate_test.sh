@@ -9,6 +9,6 @@ function test_validate_target_branch_exists_uses_target_branch_variable() {
   export CURRENT_BRANCH="some-branch"
   local output
   output=$(validate::target_branch_exists 2>&1 >/dev/null || true)
-  assert_same "Error: Base branch 'non-existent-branch' does not exist. Please check the base branch name or create it." "$output"
+  assert_same "Error: Base branch 'non-existent-branch' does not exist. Check the base branch name or create it."\
+    "$output"
 }
-
