@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Fix validate target branch
+
 ## [0.8](https://github.com/Chemaclass/create-pr/compare/0.7...0.8) - 2024-10-28
 
 - Use ticket number only at the beginning of branch name
