@@ -8,7 +8,7 @@
 }
 
 DEPENDENCIES=(
-  "https://github.com/TypedDevs/bashunit/releases/download/0.18.0/bashunit"
+  "https://github.com/TypedDevs/bashunit/releases/download/0.21.0/bashunit"
   "https://github.com/Chemaclass/bash-dumper/releases/download/0.1/dumper.sh@dev"
 )
 
