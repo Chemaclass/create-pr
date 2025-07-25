@@ -1,11 +1,11 @@
 # Changelog
 
-## [0.9](https://github.com/Chemaclass/create-pr/compare/0.8...0.9) - 2025-07-25
+## [0.9.0](https://github.com/Chemaclass/create-pr/compare/0.8...0.9.0) - 2025-07-25
 
 - Fix validate target branch
 - Trim unicode from pr title
 
-## [0.8](https://github.com/Chemaclass/create-pr/compare/0.7...0.8) - 2024-10-28
+## [0.8.0](https://github.com/Chemaclass/create-pr/compare/0.7...0.8) - 2024-10-28
 
 - Use ticket number only at the beginning of branch name
 - Add `PR_TITLE_REMOVE_PREFIX`: Remove custom prefix text from the generated title
