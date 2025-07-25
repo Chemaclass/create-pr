@@ -1,8 +1,9 @@
 # Changelog
 
-## Unreleased
+## [0.9](https://github.com/Chemaclass/create-pr/compare/0.8...0.9) - 2025-07-25
 
 - Fix validate target branch
+- Trim unicode from pr title
 
 ## [0.8](https://github.com/Chemaclass/create-pr/compare/0.7...0.8) - 2024-10-28
 
