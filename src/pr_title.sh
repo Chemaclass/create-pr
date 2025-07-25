@@ -8,6 +8,8 @@ _CURRENT_DIR="$(dirname "${BASH_SOURCE[0]}")"
 function pr_title() {
   local branch_name="$1"
   branch_name="${branch_name#*/}"
+  # Trim any Unicode characters from the branch name
+  branch_name=$(echo "$branch_name" | LC_ALL=C tr -cd '\11\12\15\40-\176')
   local ticket_key
   ticket_key=$(pr_ticket::key "$branch_name")
 
@@ -56,6 +58,8 @@ function pr_title() {
 
 function pr_title::without_ticket() {
   input="$1"
+  # Remove any Unicode characters from the input
+  input=$(echo "$input" | LC_ALL=C tr -cd '\11\12\15\40-\176')
   # Remove leading digits followed by a hyphen (e.g., "27-")
   input="${input#[0-9]*-}"
 
