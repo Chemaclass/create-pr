@@ -118,7 +118,7 @@ function provider_no_prefix() {
 }
 
 function test_pr_title_with_unicode_characters() {
-  local branch_name="feat/TICKET-0000-my-new-feature✨"
+  local branch_name="feat/TICKET-0000-my-✨new-feature"
   local actual=$(pr_title "$branch_name")
 
   assert_same "TICKET-0000 My new feature" "$actual"
