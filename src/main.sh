@@ -41,6 +41,8 @@ function main::create_pr_gitlab() {
     error_and_exit "Failed to create the Merge Request." \
       "Ensure you have the correct permissions and the repository is properly configured."
   fi
+
+  main::run_after_creation_script
 }
 
 function main::create_pr_github() {
@@ -64,5 +66,16 @@ function main::create_pr_github() {
   if ! "${gh_command[@]}"; then
       error_and_exit "Failed to create the Pull Request." \
         "Ensure you have the correct permissions and the repository is properly configured."
+  fi
+
+  main::run_after_creation_script
+}
+
+function main::run_after_creation_script() {
+  if [[ -n "$PR_RUN_AFTER_CREATION" ]]; then
+    echo "Running post-creation script..."
+    if ! eval "$PR_RUN_AFTER_CREATION"; then
+      echo "Warning: Post-creation script failed, but PR was created successfully."
+    fi
   fi
 }
