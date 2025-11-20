@@ -1,4 +1,5 @@
 #!/bin/bash
+# shellcheck disable=SC2016,SC2034
 
 function set_up() {
   source "$CREATE_PR_ROOT_DIR/src/main.sh"
