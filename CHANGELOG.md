@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.10.0](https://github.com/Chemaclass/create-pr/compare/0.9.0...0.10.0) - 2025-11-20
+
+- Added `PR_RUN_AFTER_CREATION` as optional hook-action that you can do after the create-pr script is executed
+
 ## [0.9.0](https://github.com/Chemaclass/create-pr/compare/0.8...0.9.0) - 2025-07-25
 
 - Fix validate target branch
