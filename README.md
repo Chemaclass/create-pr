@@ -151,6 +151,20 @@ PR_LABEL_MAPPING="docs:documentation; fix|bug|bugfix|hotfix:bug; default:enhance
 
 - `TARGET_BRANCH` or `main` by default
 
+### PR_RUN_AFTER_CREATION
+
+Run a custom command automatically after the PR is successfully created. This is useful for automated post-creation tasks like updating the PR description, running additional validations, or triggering notifications.
+
+#### Example
+
+```bash
+PR_RUN_AFTER_CREATION="claude -p 'using gh update the current PR in this branch description following the template, keep it simple'"
+```
+
+The command has access to all environment variables like `CURRENT_BRANCH`, `TARGET_BRANCH`, etc.
+
+**Note:** If the script fails, a warning is displayed but the PR creation is still considered successful.
+
 ## HINTS
 
 - Add to your composer, npm or similar a script pointing to the `create-pr`

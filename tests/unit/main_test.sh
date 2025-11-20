@@ -13,6 +13,7 @@ function test_main_run_after_creation_script_executes_when_set() {
 
   assert_matches "Running post-creation script..." "$output"
   assert_matches "test script executed" "$output"
+  assert_matches "Post-creation script completed successfully." "$output"
 }
 
 function test_main_run_after_creation_script_does_not_execute_when_empty() {
@@ -31,7 +32,7 @@ function test_main_run_after_creation_script_shows_warning_on_failure() {
   output=$(main::run_after_creation_script 2>&1)
 
   assert_matches "Running post-creation script..." "$output"
-  assert_matches "Warning: Post-creation script failed, but PR was created successfully." "$output"
+  assert_matches "Warning: Post-creation script exited with code 1, but PR was created successfully." "$output"
 }
 
 function test_main_run_after_creation_script_can_access_environment_variables() {
@@ -41,5 +42,7 @@ function test_main_run_after_creation_script_can_access_environment_variables() 
   local output
   output=$(main::run_after_creation_script 2>&1)
 
+  assert_matches "Running post-creation script..." "$output"
   assert_matches "Branch: feature-branch" "$output"
+  assert_matches "Post-creation script completed successfully." "$output"
 }
