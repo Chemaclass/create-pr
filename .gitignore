@@ -1,4 +1,6 @@
-bin/
-lib/
+.claude/
 .idea/
 .vscode/
+.env.tools
+bin/
+lib/

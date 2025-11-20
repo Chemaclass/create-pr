@@ -1,5 +1,5 @@
 #!/bin/bash
-# shellcheck disable=SC2317
+# shellcheck disable=SC2317,SC2329
 
 function test_check_os_linux() {
   unset _OS
