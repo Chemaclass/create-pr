@@ -42,14 +42,14 @@ function test_pr_title_custom_template_with_ticket_key_number_title() {
 }
 
 function test_pr_title_custom_template_with_ticket_number_title() {
-  skip
+  bashunit::skip
   export PR_TITLE_TEMPLATE='[{{TICKET_NUMBER}}]: {{  PR_TITLE  }} 🏗️'
   actual=$(pr_title "feat/123-my-new-2nd-feature")
 #  assert_same "[123]: My new 2nd feature 🏗️" "$actual"
 }
 
 function test_pr_title_custom_template_with_ticket_key_title() {
-  skip
+  bashunit::skip
   export PR_TITLE_TEMPLATE='[{{TICKET_KEY}}]: {{  PR_TITLE  }} 🏗️'
   actual=$(pr_title "feat/KEY-my-new-2nd-feature")
 #  assert_same "[KEY]: My new 2nd feature 🏗️" "$actual"

@@ -15,22 +15,22 @@ function set_up() {
 }
 
 function test_success() {
-  spy git
-  spy gh
+  bashunit::spy git
+  bashunit::spy gh
 
   assert_match_snapshot "$($SCRIPT)"
 }
 
 function test_script_with_dry_run() {
-  spy git
-  spy gh
+  bashunit::spy git
+  bashunit::spy gh
 
   assert_match_snapshot "$($SCRIPT --dry-run)"
 }
 
 function test_script_with_dry_run_and_extra_args() {
-  spy git
-  spy gh
+  bashunit::spy git
+  bashunit::spy gh
   export TARGET_BRANCH=prod
 
   assert_match_snapshot "$($SCRIPT --dry-run --draft "--title \"Pull request title\"")"
