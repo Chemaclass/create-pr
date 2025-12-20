@@ -50,7 +50,7 @@ SRC_SCRIPTS_DIR=src
 PRE_COMMIT_SCRIPTS_FILE=./bin/pre-commit
 
 test: $(TEST_SCRIPTS_DIR)
-	@lib/bashunit tests
+	@lib/bashunit tests --simple --parallel
 
 pre_commit/install:
 	@echo "Installing pre-commit hook"
